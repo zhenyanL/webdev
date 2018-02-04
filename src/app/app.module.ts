@@ -8,7 +8,7 @@ import { LoginComponent } from './views/users/login/login.component';
 import { ProfileComponent } from './views/users/profile/profile.component';
 import { RegisterComponent } from './views/users/register/register.component';
 import {routing} from './app.routing';
-import { CourseComponent } from './course/course.component';
+
 
 
 @NgModule({
@@ -17,7 +17,6 @@ import { CourseComponent } from './course/course.component';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    CourseComponent
   ],
   imports: [
     BrowserModule,
