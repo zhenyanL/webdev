@@ -1,0 +1,14 @@
+<div class="container">
+  <div  *ngFor="let widget of widgets">
+    <div [ngSwitch]="widget.widgetType">
+        <div *ngSwitchCase="'HEADING'"><app-heading [widget]="widget"></app-heading></div>
+
+        <div *ngSwitchCase="'IMAGE'"><app-image [widget]="widget"></app-image></div>
+
+        <div *ngSwitchCase="'YOUTUBE'"><app-youtube [widget]="widget"></app-youtube></div>
+
+        <div *ngSwitchCase="'HTML'" [innerHTML]="widget.text"></div>
+    </div>
+
+  </div>
+</div>

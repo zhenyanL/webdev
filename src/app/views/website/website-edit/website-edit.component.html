@@ -1,0 +1,11 @@
+<div class="container">
+  <form (ngSubmit)="editWeb()" #webEditForm="ngForm">
+    <div class="form-group">
+      <input class="form-control" type="text" [(ngModel)]="website.name" name="webName">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" [(ngModel)]="website.description" name="description">
+    </div>
+
+  </form>
+</div>

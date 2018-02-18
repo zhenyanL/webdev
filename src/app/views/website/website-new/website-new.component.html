@@ -1,0 +1,11 @@
+<div class="container">
+  <form (ngSubmit)="createWeb()" #newWebForm="ngForm">
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="web name" ngModel name="webName">
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="decription" ngModel name="description">
+    </div>
+    <button type="submit"> submit</button>
+  </form>
+</div>

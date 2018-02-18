@@ -1,0 +1,10 @@
+<div class="container">
+  <form (ngSubmit)="editPage()" #editPageForm="ngForm">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="page.name" name="pageName" class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="page.title" name="pageTitle" class="form-control">
+    </div>
+  </form>
+</div>

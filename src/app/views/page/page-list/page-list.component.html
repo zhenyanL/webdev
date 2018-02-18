@@ -1,0 +1,7 @@
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group" *ngFor="let page of pages">
+      <a (click)="clickPage(page)">{{page.name}}</a>
+    </li>
+  </ul>
+</div>
