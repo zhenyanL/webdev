@@ -18,11 +18,10 @@ export class WebsiteListComponent implements OnInit {
       (param: Params) => {
         this.id = param.uid;
         this.websiteList = this.websiteService.findWebsitesByUser(this.id);
-        console.log(this.websiteList);
       }
     );
   }
   clickPage(website: Website) {
-    this.router.navigate([website.id, 'page'],{relativeTo: this.activatedRoute});
+    this.router.navigate(['/user', this.id, 'website', website.id, 'page']);
   }
 }

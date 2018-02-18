@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChoooserComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wid', component: WidgetEditComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid', component: WidgetEditComponent},
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

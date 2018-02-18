@@ -26,8 +26,8 @@ export class PageListComponent implements OnInit {
     );
   }
 
-  clickPage(page: Page) {
-    this.router.navigate([page.id, 'widget'], {relativeTo: this.activatedRoute});
-  }
+  // clickPage(page: Page) {
+  //   this.router.navigate([page.id, 'widget'], {relativeTo: this.activatedRoute});
+  // }
 
 }

@@ -33,7 +33,8 @@ export class PageService {
   }
 
   findPageById(pageId: string) {
-    return this.pages.find(page =>  page.id === pageId);
+    const page = this.pages.find(page =>  page.id === pageId);
+    return new Page(page.id, page.name, page.websiteId, page.title);
   }
 
   updatePage(pageId: string, newPage: Page) {

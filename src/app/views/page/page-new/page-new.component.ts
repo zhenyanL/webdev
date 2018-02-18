@@ -15,7 +15,7 @@ class Param {
 export class PageNewComponent implements OnInit {
 
 
-  @ViewChild('editPageForm') editPageForm: NgForm;
+  @ViewChild('newPageForm') newPageForm: NgForm;
 
   webId: string;
   userId: string
@@ -31,8 +31,8 @@ export class PageNewComponent implements OnInit {
   }
 
   createPage() {
-    const name = this.editPageForm.value.pageName;
-    const title = this.editPageForm.value.pageTitle;
+    const name = this.newPageForm.value.pageName;
+    const title = this.newPageForm.value.pageTitle;
     this.pageService.createPage(this.webId, name, title);
     this.router.navigate(['user', this.userId, 'website', this.webId, 'page']);
   }

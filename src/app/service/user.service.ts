@@ -5,10 +5,10 @@ import {User} from '../model/user.model';
 export class UserService {
 
   users: User[] = [
-    new User('123', 'alice', 'alice', 'Alice', 'Wonder'),
-    new User('234', 'bob', 'bob', 'Bob', 'Marley'),
-    new User('345', 'charly', 'charly', 'Charly', 'Garcia'),
-    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi'),
+    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi', 'jannunzi@gmail.com'),
+    new User('123', 'alice', 'alice', 'Alice', 'Wonder', 'alice@gmail.com'),
+    new User('234', 'bob', 'bob', 'Bob', 'Marley', 'bob@gmail.com'),
+    new User('345', 'charly', 'charly', 'Charly', 'Garcia', 'charly@gmail.com')
   ];
 
   constructor() { }
@@ -24,7 +24,7 @@ export class UserService {
   createUser(userName: string, password: string, firstName: string, lastName: string) {
     // actually this should done in the server side
     const id = Math.random().toString();
-    const user = new User(id, userName, password, firstName, lastName);
+    const user = new User(id, userName, password, firstName, lastName, '');
     this.users.push(user);
     return user;
   }

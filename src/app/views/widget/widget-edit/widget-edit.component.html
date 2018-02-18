@@ -1,3 +1,7 @@
+
+
+
+
 <div [ngSwitch]="widget.widgetType">
   <div *ngSwitchCase="'HEADING'"><app-widget-header [widget]="widget"></app-widget-header></div>
 
@@ -8,3 +12,5 @@
   <div *ngSwitchCase="'HTML'" [innerHTML]="widget.text"></div>
 
 </div>
+
+

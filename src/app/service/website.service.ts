@@ -9,9 +9,9 @@ export class WebsiteService {
 constructor() { }
 
   websites: Website[] = [
+    new Website('456', 'Gizmode', '456', 'Lorem'),
     new Website('123', 'Facebook', '456', 'Lorem'),
     new Website('234', 'Tweeter', '456', 'Lorem'),
-    new Website('456', 'Gizmode', '456', 'Lorem'),
     new Website('890', 'Go', '123', 'Lorem'),
     new Website('567', 'Tic Tac Toe', '123', 'Lorem'),
     new Website('678', 'Checkers', '123', 'Lorem'),
@@ -35,7 +35,8 @@ constructor() { }
     return userWeb;
   }
   findWebsiteById(websiteId: string) {
-    return this.websites.find(website => website.id === websiteId);
+    const web = this.websites.find(website => website.id === websiteId);
+    return new Website(web.id, web.name, web.developerId, web.description);
   }
   updateWebsite(websiteId: string, newWebsite: Website) {
     const index: number = this.websites.findIndex(website => website.id === websiteId);

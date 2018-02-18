@@ -35,10 +35,12 @@ export class WidgetService {
   }
 
   findWidgetById(widgetId: string) {
-    return this.widgets.find(widget =>  widget.id === widgetId);
+    const widgetFound = this.widgets.find(widget =>  widget.id === widgetId);
+    return new Widget(widgetFound.id, widgetFound.widgetType, widgetFound.pageId, widgetFound.size,
+      widgetFound.text, widgetFound.width, widgetFound.url);
   }
 
-  updateWidget(widgetId: string, newWidget) {
+  updateWidget(widgetId: string, newWidget: Widget) {
     const index = this.widgets.findIndex(widget => widget.id === widgetId);
     this.widgets[index] = newWidget;
   }

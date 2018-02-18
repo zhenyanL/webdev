@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-widget-choooser',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetChoooserComponent implements OnInit {
 
-  constructor() { }
-
+  userId: string;
+  widgetsChooser = ['Header', 'Label', 'HTML', 'Text Input', 'Link', 'Button', 'Image', 'Youtube', 'Data Table', 'Repeater'];
+  constructor(private activatedRoute: ActivatedRoute) { }
   ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      (param: Params) => {
+        this.userId = param.uid;
+      }
+    );
   }
 
 }
