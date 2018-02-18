@@ -28,6 +28,10 @@ import { HeadingComponent } from './views/widget/widget-list/heading/heading.com
 import { ImageComponent } from './views/widget/widget-list/image/image.component';
 import { YoutubeComponent } from './views/widget/widget-list/youtube/youtube.component';
 import { HtmlComponent } from './views/widget/widget-list/html/html.component';
+import { WidgetNewComponent } from './views/widget/widget-choooser/widget-new/widget-new.component';
+import { NewHeadingComponent } from './views/widget/widget-choooser/widget-new/new-heading/new-heading.component';
+import { NewImageComponent } from './views/widget/widget-choooser/widget-new/new-image/new-image.component';
+import { NewYoutubeComponent } from './views/widget/widget-choooser/widget-new/new-youtube/new-youtube.component';
 
 
 @NgModule({
@@ -51,7 +55,11 @@ import { HtmlComponent } from './views/widget/widget-list/html/html.component';
     HeadingComponent,
     ImageComponent,
     YoutubeComponent,
-    HtmlComponent
+    HtmlComponent,
+    NewHeadingComponent,
+    NewImageComponent,
+    NewYoutubeComponent,
+    WidgetNewComponent
   ],
   imports: [
     BrowserModule,

@@ -18,10 +18,10 @@ export class WidgetService {
 
   constructor() { }
 
-  createWidget(pageId: string, widget) {
+  createWidget(widgetType: string, pageId: string, size: string, text: string, width: string, url: string) {
     // actually this should done in the server side
-    widget.pageId = pageId;
-    this.widgets.push(widget);
+    const id = Math.random().toString();
+    this.widgets.push(new Widget(id, widgetType, pageId, size, text, width, url));
   }
 
   findWidgetByPageId(pageId: string) {

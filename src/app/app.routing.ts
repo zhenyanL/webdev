@@ -12,6 +12,7 @@ import {PageEditComponent} from './views/page/page-edit/page-edit.component';
 import {WidgetListComponent} from './views/widget/widget-list/widget-list.component';
 import {WidgetChoooserComponent} from './views/widget/widget-choooser/widget-choooser.component';
 import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
+import {WidgetNewComponent} from './views/widget/widget-choooser/widget-new/widget-new.component';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChoooserComponent},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/:part', component: WidgetNewComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid', component: WidgetEditComponent},
 ];
 
