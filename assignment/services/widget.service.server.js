@@ -59,7 +59,7 @@ module.exports = function (app) {
       // var callBackUrl = '/user/'+userId+'/website/'+websiteId+'/page/'+pageId+'/widget'
       // var callBackUrl = "../../src/app//assignment/#/user/"+userId+"/website/"+websiteId;
     // 'user/:uid/website/:wid/page/:pid/widget'
-      var callBackUrl = "https://web-zhenyan.herokuapp.com/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+      var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
       res.redirect(callBackUrl);
       // res.sendFile("index.html");
       // res.sendFile(__dirname+'../../../src/index.html')
