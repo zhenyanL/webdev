@@ -32,6 +32,10 @@ app.get('/try',function (req,res,next) {
 
 require("./assignment/app")(app);
 
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
 // app.use(app.router);
 // app.use(function(req, res) {
 //   // Use res.sendfile, as it streams instead of reading the file into memory.
