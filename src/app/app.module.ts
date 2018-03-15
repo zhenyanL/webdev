@@ -32,6 +32,7 @@ import { WidgetNewComponent } from './views/widget/widget-choooser/widget-new/wi
 import { NewHeadingComponent } from './views/widget/widget-choooser/widget-new/new-heading/new-heading.component';
 import { NewImageComponent } from './views/widget/widget-choooser/widget-new/new-image/new-image.component';
 import { NewYoutubeComponent } from './views/widget/widget-choooser/widget-new/new-youtube/new-youtube.component';
+import {HttpModule} from '@angular/http';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { NewYoutubeComponent } from './views/widget/widget-choooser/widget-new/n
     BrowserModule,
     routing,
     FormsModule,
+    HttpModule
   ],
   providers: [UserService, PageService, WebsiteService, WidgetService],
   bootstrap: [AppComponent]

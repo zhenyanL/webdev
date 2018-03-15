@@ -27,8 +27,12 @@ export class RegisterComponent implements OnInit {
     if (password !== verify) {
       this.unMatched = true;
     } else {
-      const user = this.userService.createUser(userName, password, firstName, lastName);
-      this.router.navigate(['/user', user.id]);
+      this.userService.createUser(userName, password, firstName, lastName)
+        .subscribe(
+          (data: any) => {
+            this.router.navigate(['/user', data.id]);
+          }
+        );
     }
   }
 }

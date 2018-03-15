@@ -19,7 +19,12 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(
       (param: Params) => {
         this.id = param.uid;
-        this.user = this.userService.findUserById(this.id);
+        // this.user = this.userService.findUserById(this.id);
+        this.userService.findUserById(this.id).subscribe(
+          (data: any) => {
+            this.user = data;
+          }
+        );
       }
     );
 
@@ -38,7 +43,8 @@ export class ProfileComponent implements OnInit {
     const email = this.profileForm.value.email;
     const firstName = this.profileForm.value.firstName;
     const lastName = this.profileForm.value.lastName;
-    this.userService.updateUser(this.user.id, new User(this.user.id, userName, this.user.password, firstName, lastName, email));
+    this.userService.updateUser(this.user.id, new User(this.user.id, userName, this.user.password, firstName, lastName)).subscribe(
+        (data: any) => {});
     alert( 'save successfully' );
     this.router.navigate([], {relativeTo: this.route});
   }

@@ -36,6 +36,7 @@ app.set('port', port);
 // Create HTTP server
 const server = http.createServer(app);
 
+require("./assignment/app.js")(app);
 
 
 /*
@@ -45,5 +46,8 @@ app.get('*', function (req, res) {
 });
 */
 
+require("./assignment/app")(app);
 
-server.listen( port , () => console.log('Running on port 5000'));
+server.listen( port , function(){
+  console.log('Running on port 5000');
+} );
