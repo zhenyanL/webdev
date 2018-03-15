@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {WebsiteService} from '../../../service/website.service';
+import {Website} from '../../../model/website.model';
 
 @Component({
   selector: 'app-website-new',
@@ -25,8 +26,12 @@ export class WebsiteNewComponent implements OnInit {
   createWeb() {
     const name = this.newWebForm.value.webName;
     const description = this.newWebForm.value.description;
-    this.webService.createWebsite(this.developerId, name, description);
-    this.router.navigate(['user', this.developerId, 'website']);
+    const website = new Website('', name, this.developerId, description);
+    this.webService.createWebsite(website).subscribe(
+      (data: any) => {
+        this.router.navigate(['user', this.developerId, 'website']);
+      }
+    );
   }
 
 }

@@ -12,6 +12,7 @@ export class ImageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.widget.url);
   }
 
 }

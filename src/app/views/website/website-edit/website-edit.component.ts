@@ -19,7 +19,11 @@ export class WebsiteEditComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (param: Params) => {
         this.id = param.wid;
-        this.website = this.websiteService.findWebsiteById(this.id);
+        this.websiteService.findWebsiteById(this.id).subscribe(
+          (website: Website) => {
+            this.website = website;
+          }
+        );
       }
     );
   }
@@ -27,14 +31,20 @@ export class WebsiteEditComponent implements OnInit {
   editWeb() {
       const name = this.webEditForm.value.webName;
       const description = this.webEditForm.value.description;
-      this.websiteService.updateWebsite(this.id, new Website(this.id, name, this.website.developerId, description));
-      alert( 'save successfully');
-      this.router.navigate(['/user', this.website.developerId, 'website']);
+      this.websiteService.updateWebsite(this.id, new Website(this.id, name, this.website.developerId, description)).subscribe(
+        (website: Website) => {
+          alert( 'save successfully');
+          this.router.navigate(['/user', this.website.developerId, 'website']);
+        }
+      );
   }
 
   deleteWeb() {
-    this.websiteService.deleteWebsite(this.id);
-    this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+    this.websiteService.deleteWebsite(this.id).subscribe(
+      (website: Website) => {
+        this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+      }
+    );
   }
 
 

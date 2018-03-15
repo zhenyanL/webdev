@@ -13,23 +13,61 @@
 
 
 
-
+<!--<ul appSortable (newIndexes)="newIndexes($event)">-->
+  <!--<li>One</li>-->
+  <!--<li>Two</li>-->
+  <!--<li>Three</li>-->
+  <!--<li>Four</li>-->
+  <!--<li>Five</li>-->
+<!--</ul>-->
 
 <div class="container container-padding">
-  <div  *ngFor="let widget of widgets">
-    <div [ngSwitch]="widget.widgetType">
+  <ul appSortable (newIndexes)="newIndexes($event)" class="list-group cl-list-group-borderless">
+    <li class="list-group-item cl-list-item-borderless" *ngFor="let widget of widgets" >
+      <div [ngSwitch]="widget.widgetType">
         <div *ngSwitchCase="'HEADING'"><app-heading [widget]="widget"></app-heading></div>
 
         <div *ngSwitchCase="'IMAGE'"><app-image [widget]="widget"></app-image></div>
 
         <div *ngSwitchCase="'YOUTUBE'"><app-youtube [widget]="widget"></app-youtube></div>
 
-        <div *ngSwitchCase="'HTML'" [innerHTML]="widget.text"></div>
-    </div>
+        <!--<div *ngSwitchCase="'HTML'" [innerHTML]="widget.text"></div>-->
+        <div *ngSwitchCase="'HTML'"><app-html [widget]="widget"></app-html></div>
 
-  </div>
+        <div *ngSwitchCase="'TEXT'"><app-html [widget]="widget"></app-html></div>
+
+
+      </div>
+    </li>
+  </ul>
 </div>
 
+
+<!--<div class="container container-padding">-->
+  <!--<div  *ngFor="let widget of widgets">-->
+    <!--<div [ngSwitch]="widget.widgetType">-->
+        <!--<div *ngSwitchCase="'HEADING'"><app-heading [widget]="widget"></app-heading></div>-->
+
+        <!--<div *ngSwitchCase="'IMAGE'"><app-image [widget]="widget"></app-image></div>-->
+
+        <!--<div *ngSwitchCase="'YOUTUBE'"><app-youtube [widget]="widget"></app-youtube></div>-->
+
+        <!--<div *ngSwitchCase="'HTML'" [innerHTML]="widget.text"></div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+<!--</div>-->
+
+
+
+<!--<div class="container">-->
+  <!--<ul class="list-group cl-list-group-borderless">-->
+    <!--<li class="list-group-item cl-list-item-borderless" *ngFor="let website of websiteList">-->
+      <!--<a [routerLink]="website.id" ><span class="glyphicon glyphicon-cog pull-right"></span></a>-->
+      <!--<a (click)="clickPage(website)">{{website.name}}</a>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</div>-->
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

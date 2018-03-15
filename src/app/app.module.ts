@@ -33,6 +33,15 @@ import { NewHeadingComponent } from './views/widget/widget-choooser/widget-new/n
 import { NewImageComponent } from './views/widget/widget-choooser/widget-new/new-image/new-image.component';
 import { NewYoutubeComponent } from './views/widget/widget-choooser/widget-new/new-youtube/new-youtube.component';
 import {HttpModule} from '@angular/http';
+import { SortableDirective } from '../../assignment/directives/sortable.directive';
+import {NewHtmlComponent} from './views/widget/widget-choooser/widget-new/new-html/new-html.component';
+import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
+import {NewTextComponent} from './views/widget/widget-choooser/widget-new/new-text/new-text.component';
+import { TextComponent } from './views/widget/widget-list/text/text.component';
+import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
+
+
+
 
 
 @NgModule({
@@ -60,7 +69,13 @@ import {HttpModule} from '@angular/http';
     NewHeadingComponent,
     NewImageComponent,
     NewYoutubeComponent,
-    WidgetNewComponent
+    NewHtmlComponent,
+    WidgetNewComponent,
+    SortableDirective,
+    WidgetHtmlComponent,
+    NewTextComponent,
+    TextComponent,
+    WidgetTextComponent,
   ],
   imports: [
     BrowserModule,

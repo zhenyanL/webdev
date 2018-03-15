@@ -1,50 +1,79 @@
 import { Injectable } from '@angular/core';
 import {Website} from '../model/website.model';
-
+import {Http, Response} from '@angular/http';
+import 'rxjs/Rx';
+// // import {environment} from  '../../environments/environment' ;
+// import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class WebsiteService {
 
 
-constructor() { }
-
-  websites: Website[] = [
-    new Website('456', 'Gizmode', '456', 'Lorem'),
-    new Website('123', 'Facebook', '456', 'Lorem'),
-    new Website('234', 'Tweeter', '456', 'Lorem'),
-    new Website('890', 'Go', '123', 'Lorem'),
-    new Website('567', 'Tic Tac Toe', '123', 'Lorem'),
-    new Website('678', 'Checkers', '123', 'Lorem'),
-    new Website('789', 'Chess', '234', 'Lorem'),
-  ];
+constructor(private http: Http) { }
 
 
 
-  createWebsite(userId: string, name: string, description: string) {
-    const id = Math.random().toString();
-    this.websites.push(new Website(id, name, userId, description));
+
+  createWebsite(website: Website) {
+    // const id = Math.random().toString();
+    // this.websites.push(new Website(id, name, userId, description));
+    const url = environment.baseUrl + '/api/user/' + website.developerId + '/website';
+    return this.http.post(url, website).map(
+      (response: Response) => {
+        return response.json();
+      }
+    );
   }
 
   findWebsitesByUser(userId: string) {
-    const userWeb = [];
-    this.websites.forEach(function (website) {
-      if (website.developerId === userId) {
-        userWeb.push(website);
+    // const userWeb = [];
+    // this.websites.forEach(function (website) {
+    //   if (website.developerId === userId) {
+    //     userWeb.push(website);
+    //   }
+    // });
+    // return userWeb;
+    const url = environment.baseUrl + '/api/user/' + userId + '/website';
+    return this.http.get(url).map(
+      (response: Response) => {
+        return response.json();
       }
-    });
-    return userWeb;
+    );
   }
+
   findWebsiteById(websiteId: string) {
-    const web = this.websites.find(website => website.id === websiteId);
-    return new Website(web.id, web.name, web.developerId, web.description);
+    // const web = this.websites.find(website => website.id === websiteId);
+    // return new Website(web.id, web.name, web.developerId, web.description);
+
+    const url = environment.baseUrl + '/api/website/' + websiteId;
+    return this.http.get(url).map(
+      (response: Response) => {
+        return response.json();
+      }
+    );
   }
+
   updateWebsite(websiteId: string, newWebsite: Website) {
-    const index: number = this.websites.findIndex(website => website.id === websiteId);
-    this.websites[index] = newWebsite;
+
+    // const index: number = this.websites.findIndex(website => website.id === websiteId);
+    // this.websites[index] = newWebsite;
+    const url = environment.baseUrl + '/api/website/' + websiteId;
+    return this.http.put(url, newWebsite).map(
+      (response: Response) => {
+        return response.json();
+      }
+    );
   }
   deleteWebsite(websiteId: string) {
-    const index: number = this.websites.findIndex(website => website.id === websiteId);
-    this.websites.splice(index, 1);
+    // const index: number = this.websites.findIndex(website => website.id === websiteId);
+    // this.websites.splice(index, 1);
+    const url = environment.baseUrl + '/api/website/' + websiteId;
+    return this.http.delete(url).map(
+      (response: Response) => {
+        return response.json();
+      }
+    );
   }
 
 

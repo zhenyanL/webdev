@@ -9,7 +9,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 export class WidgetChoooserComponent implements OnInit {
 
   userId: string;
-  widgetsChooser = ['Header', 'Label', 'HTML', 'Text Input', 'Link', 'Button', 'Image', 'Youtube', 'Data Table', 'Repeater'];
+  widgetsChooser = ['Header', 'Label', 'Html', 'Text Input', 'Link', 'Button', 'Image', 'Youtube', 'Data Table', 'Repeater'];
   constructor(private activatedRoute: ActivatedRoute) { }
   ngOnInit() {
     this.activatedRoute.params.subscribe(

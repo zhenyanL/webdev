@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {WidgetService} from '../../../../../service/widget.service';
+import {environment} from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-new-image',
@@ -13,6 +14,8 @@ export class NewImageComponent implements OnInit {
   widgetId: string;
   userId: string;
   pageId: string;
+  websiteId: string;
+  baseUrl: string = environment.baseUrl;
   @ViewChild('widgetForm') widgetForm: NgForm;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
@@ -22,6 +25,7 @@ export class NewImageComponent implements OnInit {
         this.widgetId = param.wdid;
         this.userId = param.uid;
         this.pageId = param.pid;
+        this.websiteId = param.wid;
       }
     );
   }
@@ -29,8 +33,11 @@ export class NewImageComponent implements OnInit {
     const text = this.widgetForm.value.widgetText;
     const width = this.widgetForm.value.width;
     const url = this.widgetForm.value.url;
-    this.widgetService.createWidget('IMAGE', this.pageId, '4', text, width, url);
-    this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+    this.widgetService.createWidget('IMAGE', this.pageId, '4', text, width, url).subscribe(
+      (data: any) => {
+        this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+      }
+    );
   }
 
 }

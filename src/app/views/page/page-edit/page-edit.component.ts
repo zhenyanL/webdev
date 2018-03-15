@@ -27,7 +27,11 @@ export class PageEditComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (param: Params) => {
         this.pageId = param.pid;
-        this.page = this.pageService.findPageById(this.pageId);
+        this.pageService.findPageById(this.pageId).subscribe(
+          (page: Page) => {
+            this.page = page;
+          }
+        );
         this.userId = param.uid;
       }
     );
@@ -36,14 +40,20 @@ export class PageEditComponent implements OnInit {
   editPage() {
       const name = this.editPageForm.value.pageName;
       const title = this.editPageForm.value.pageTitle;
-      this.pageService.updatePage(this.pageId, new Page(this.pageId, name, this.page.websiteId, title));
-      alert( 'save successfully');
-      this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+      this.pageService.updatePage(this.pageId, new Page(this.pageId, name, this.page.websiteId, title)).subscribe(
+        (page: Page) => {
+          alert( 'save successfully');
+          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+        }
+      );
   }
 
   deletePage() {
-    this.pageService.deletePage(this.pageId);
-    this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+    this.pageService.deletePage(this.pageId).subscribe(
+      (data: any) => {
+        this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+      }
+    );
   }
 
 }

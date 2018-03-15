@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../service/user.service';
+import {User} from '../../../model/user.model';
 
 @Component({
   selector: 'app-login',
@@ -13,28 +14,34 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
   matched = true;
-  user;
 
   ngOnInit() {
   }
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) {};
   login() {
     const name = this.loginForm.value.userName;
     const password = this.loginForm.value.password;
     this.userService.findUserByCredentials(name, password).
-    subscribe(
-      (data: any) => {
-        this.user = data;
+      subscribe(
+      ( user: User) => {
+        if (user) {
+          this.router.navigate(['/user', user.id]);
+        } else {
+          this.matched = false;
+          console.log(this.matched);
+        }
       }
     );
-    if (this.user != null) {
-      this.router.navigate(['/user', this.user.id]);
-    } else {
-      this.matched = false;
-    }
+
+    //you cannot do like this,, http is a asynchronous server
+    // if (this.user != null) {
+    //   this.router.navigate(['/user', this.user.id]);
+    // } else {
+    //   this.matched = false;
+    // }
   }
-  register() {
-    this.router.navigate(['/login']);
-  }
+  // register() {
+  //   this.router.navigate(['/login']);
+  // }
 
 }

@@ -16,17 +16,25 @@ export class WidgetListComponent implements OnInit {
   widgets: Widget[];
   userId: string;
   webId: string;
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService,private pageService: PageService, private webService: WebsiteService) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private pageService: PageService, private webService: WebsiteService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (param: Params) => {
         this.pageId = param.pid;
-        this.widgets = this.widgetService.findWidgetByPageId(this.pageId);
+         this.widgetService.findWidgetByPageId(this.pageId).subscribe(
+          (widgets: Widget[]) => {
+            this.widgets = widgets;
+          }
+        );
         this.userId = param.uid;
         this.webId = param.wid;
       }
     );
+  }
+
+  newIndexes(index) {
+    this.widgetService.changeIndex(this.pageId, index.startIndex, index.endIndex);
   }
 
 }

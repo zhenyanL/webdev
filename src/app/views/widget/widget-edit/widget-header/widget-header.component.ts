@@ -26,14 +26,20 @@ export class WidgetHeaderComponent implements OnInit {
     const text = this.widgetForm.value.widgetText;
     const size = this.widgetForm.value.widgetSize;
     this.widgetService.updateWidget(this.widget.id, new Widget(this.widget.id, this.widget.widgetType,
-      this.widget.pageId, size, text, this.widget.width, this.widget.url));
-    alert( 'save successfully');
-    this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      this.widget.pageId, size, text, this.widget.width, this.widget.url)).subscribe(
+      (widget: Widget) => {
+        alert( 'save successfully');
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+      }
+    );
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widget.id);
-    this.router.navigate(['../'],  {relativeTo:this.activatedRoute});
+    this.widgetService.deleteWidget(this.widget.id).subscribe(
+      (data: any) => {
+        this.router.navigate(['../'],  {relativeTo:this.activatedRoute});
+      }
+    );
   }
 
 }

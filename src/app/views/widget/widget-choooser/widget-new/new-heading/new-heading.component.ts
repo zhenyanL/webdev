@@ -22,14 +22,20 @@ export class NewHeadingComponent implements OnInit {
         this.widgetId = param.wdid;
         this.userId = param.uid;
         this.pageId = param.pid;
+        console.log(this.widgetId);
+        console.log(this.userId);
+        console.log(this.pageId);
       }
     );
   }
   save() {
     const text = this.widgetForm.value.widgetText;
     const size = this.widgetForm.value.widgetSize;
-    this.widgetService.createWidget('HEADING', this.pageId, size, text, '100%', 'url');
-    this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+    this.widgetService.createWidget('HEADING', this.pageId, size, text, '100%', 'url').subscribe(
+      (data: any) => {
+        this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+      }
+    );
   }
 
 }

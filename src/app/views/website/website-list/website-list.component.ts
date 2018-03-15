@@ -17,7 +17,11 @@ export class WebsiteListComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (param: Params) => {
         this.id = param.uid;
-        this.websiteList = this.websiteService.findWebsitesByUser(this.id);
+         this.websiteService.findWebsitesByUser(this.id).subscribe(
+          (websites: Website[]) => {
+            this.websiteList = websites;
+          }
+        );
       }
     );
   }
