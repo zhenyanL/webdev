@@ -83,9 +83,24 @@ module.exports = function (app) {
     }
     var initial = parseInt(req.query["initial"]);
     var final = parseInt(req.query["final"]);
-    var temp = widgets[foundWidgets[initial]];
-    widgets[foundWidgets[initial]] = widgets[foundWidgets[final]];
-    widgets[foundWidgets[final]] = temp;
+
+    var temp =  widgets[foundWidgets[initial]];
+    if (initial < final){
+      for(var i = initial; i < final; i++) {
+        widgets[foundWidgets[i]] = widgets[foundWidgets[i + 1]];
+      }
+      widgets[foundWidgets[final]] = temp;
+    } else {
+      for(var i = initial; i > final; i--) {
+        widgets[foundWidgets[i]] = widgets[foundWidgets[i - 1]];
+      }
+      widgets[foundWidgets[final]] = temp;
+    }
+
+
+    // var temp = widgets[foundWidgets[initial]];
+    // widgets[foundWidgets[initial]] = widgets[foundWidgets[final]];
+    // widgets[foundWidgets[final]] = temp;
     res.send(pageId);
 
 
