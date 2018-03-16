@@ -78,14 +78,14 @@ module.exports = function (app) {
     var foundWidgets = [];
     for(var i = 0; i < widgets.length; i++){
       if(widgets[i].pageId === pageId){
-        foundWidgets.push(widgets[i]);
+        foundWidgets.push(i);
       }
     }
-    var initial = req.query["initial"];
-    var final = req.query["final"];
-    var temp = foundWidgets[initial];
-    foundWidgets[initial] = foundWidgets[final];
-    foundWidgets[final] = temp;
+    var initial = parseInt(req.query["initial"]);
+    var final = parseInt(req.query["final"]);
+    var temp = widgets[foundWidgets[initial]];
+    widgets[foundWidgets[initial]] = widgets[foundWidgets[final]];
+    widgets[foundWidgets[final]] = temp;
     res.send(pageId);
 
 
