@@ -3,13 +3,13 @@
 module.exports = function (app) {
   // id: string, widgetType: string, pageId: string, size: string, text: string, width: string, url: string
   var widgets =   [
-    {id:'123', widgetType:'HEADING', pageId:'321', size:'2', text:'GIZMODO', width:'100%', url:'url'},
-    {id:'234', widgetType:'HEADING',  pageId:'321',  size:'4', text:'Lorem ipsum',  width:'100%', url:'url'},
-  {id:'345', widgetType:'IMAGE',  pageId:'321',  size:'4', text:'text',  width:'100%', url:'http://lorempixel.com/400/200/'},
-  {id:'456', widgetType:'HTML',  pageId:'321', size: '4', text:'<p>Lorem ipsum</p>',  width:'100%', url:'url'},
-  {id:'567', widgetType:'HEADING',  pageId:'321',  size:'4', text:'Lorem ipsum',  width:'100%', url:'http://lorempixel.com/400/200/'},
-  {id:'678',widgetType: 'YOUTUBE',  pageId:'321',  size:'4', text:'text', width:'100%', url:'https://www.youtube.com/embed/4jtVx4_QpKA'},
-  {id:'789', widgetType:'HTML',  pageId:'321',  size:'4', text:'<p>Lorem ipsum</p>',  width:'100%', url:'url'},
+    {id:'123',name: 'Heading1', widgetType:'HEADING', pageId:'321', size:'2', text:'GIZMODO', width:'100%', url:'url'},
+    {id:'234',name: 'heading2', widgetType:'HEADING',  pageId:'321',  size:'4', text:'Lorem ipsum',  width:'100%', url:'url'},
+  {id:'345', name:'image1',widgetType:'IMAGE',  pageId:'321',  size:'4', text:'text',  width:'100%', url:'http://lorempixel.com/400/200/'},
+  {id:'456', name:'html1',widgetType:'HTML',  pageId:'321', size: '4', text:'<p>Lorem ipsum</p>',  width:'100%', url:'url'},
+  {id:'567', name: 'heading2',widgetType:'HEADING',  pageId:'321',  size:'4', text:'Lorem ipsum',  width:'100%', url:'http://lorempixel.com/400/200/'},
+  {id:'678',name: 'youtube1',widgetType: 'YOUTUBE',  pageId:'321',  size:'4', text:'text', width:'100%', url:'https://www.youtube.com/embed/4jtVx4_QpKA'},
+  {id:'789', name:'html2',widgetType:'HTML',  pageId:'321',  size:'4', text:'<p>Lorem ipsum</p>',  width:'100%', url:'url'},
   ];
 
 

@@ -25,8 +25,9 @@ export class WidgetHtmlComponent implements OnInit {
   }
   save() {
     const text = this.widgetForm.value.htmlText;
+    const name = this.widgetForm.value.widgetName;
     // const size = this.widgetForm.value.widgetSize;
-    this.widgetService.updateWidget(this.widget.id, new Widget(this.widget.id, this.widget.widgetType,
+    this.widgetService.updateWidget(this.widget.id, new Widget(name, this.widget.id, this.widget.widgetType,
       this.widget.pageId, this.widget.size, text, this.widget.width, this.widget.url)).subscribe(
       (widget: Widget) => {
         alert( 'save successfully');

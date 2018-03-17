@@ -33,7 +33,8 @@ export class NewImageComponent implements OnInit {
     const text = this.widgetForm.value.widgetText;
     const width = this.widgetForm.value.width;
     const url = this.widgetForm.value.url;
-    this.widgetService.createWidget('IMAGE', this.pageId, '4', text, width, url).subscribe(
+    const name = this.widgetForm.value.widgetName;
+    this.widgetService.createWidget( name, 'IMAGE', this.pageId, '4', text, width, url).subscribe(
       (data: any) => {
         this.router.navigate(['../'],{relativeTo: this.activatedRoute});
       }

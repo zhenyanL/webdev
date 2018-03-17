@@ -20,7 +20,7 @@ export class WidgetService {
 
   constructor(private http: Http) { }
 
-  createWidget(widgetType: string, pageId: string, size: string, text: string, width: string, url: string) {
+  createWidget(name: string, widgetType: string, pageId: string, size: string, text: string, width: string, url: string) {
     // actually this should done in the server side
     // const id = Math.random().toString();
     // this.widgets.push(new Widget(id, widgetType, pageId, size, text, width, url));
@@ -28,7 +28,7 @@ export class WidgetService {
 
     // '/api/page/:pageId/widget'
     const serverUrl = environment.baseUrl +     '/api/page/' + pageId + '/widget';
-    return this.http.post(serverUrl, new Widget('', widgetType, pageId, size, text, width, url)).map(
+    return this.http.post(serverUrl, new Widget('', name, widgetType, pageId, size, text, width, url)).map(
       (response: Response) => {
         return response.json();
       }

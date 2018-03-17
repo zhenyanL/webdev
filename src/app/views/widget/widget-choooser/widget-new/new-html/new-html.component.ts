@@ -31,8 +31,9 @@ export class NewHtmlComponent implements OnInit {
   }
   save() {
     const htmlText = this.widgetForm.value.htmlText;
+    const name = this.widgetForm.value.widgetName;
     // const size = this.widgetForm.value.widgetSize;
-    this.widgetService.createWidget('HTML', this.pageId, '', htmlText, '100%', 'url').subscribe(
+    this.widgetService.createWidget(name, 'HTML', this.pageId, '', htmlText, '100%', 'url').subscribe(
       (data: any) => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }

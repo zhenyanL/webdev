@@ -31,7 +31,8 @@ export class NewHeadingComponent implements OnInit {
   save() {
     const text = this.widgetForm.value.widgetText;
     const size = this.widgetForm.value.widgetSize;
-    this.widgetService.createWidget('HEADING', this.pageId, size, text, '100%', 'url').subscribe(
+    const name = this.widgetForm.value.widgetName;
+    this.widgetService.createWidget( name, 'HEADING', this.pageId, size, text, '100%', 'url').subscribe(
       (data: any) => {
         this.router.navigate(['../'],{relativeTo: this.activatedRoute});
       }

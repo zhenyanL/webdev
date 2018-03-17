@@ -32,7 +32,8 @@ export class NewTextComponent implements OnInit {
   save() {
     const text = this.widgetForm.value.text;
     const size = this.widgetForm.value.widgetSize;
-    this.widgetService.createWidget('TEXT', this.pageId, size, text, '100%', 'url').subscribe(
+    const name = this.widgetForm.value.widgetName;
+    this.widgetService.createWidget(name, 'TEXT', this.pageId, size, text, '100%', 'url').subscribe(
       (data: any) => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
