@@ -44,7 +44,7 @@ module.exports = function (app) {
     widgets[index].width = width;
     widgets[index].text = text;
 
-    if(newFile != null){
+    if(newFile != undefined){
       var filename = newFile.filename;
       var url = 'assets/uploads/'+filename;
       widgets[index].url = url;
