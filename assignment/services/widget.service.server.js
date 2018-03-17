@@ -26,7 +26,7 @@ module.exports = function (app) {
   app.delete('/api/widget/:widgetId',deleteWidget);
   app.put('/api/page/:pageId/widget',changeIndex);
   app.post('/api/upload', upload.single('myFile') ,uploadImage);
-  app.post('/api/updateImage', upload.single('newFile'), updateImage);
+  app.post('/api/update', upload.single('newFile'), updateImage);
 
   function updateImage(req,res,next) {
     var websiteId = req.body.websiteId;
