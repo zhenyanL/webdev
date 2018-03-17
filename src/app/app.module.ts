@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/user/login/login.component';
@@ -81,7 +81,8 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     BrowserModule,
     routing,
     FormsModule,
-    HttpModule
+    HttpModule,
+    QuillEditorModule
   ],
   providers: [UserService, PageService, WebsiteService, WidgetService],
   bootstrap: [AppComponent]
