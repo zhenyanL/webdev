@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { QuillEditorModule } from 'ngx-quill-editor';
 
+
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/user/login/login.component';
 import { ProfileComponent } from './views/user/profile/profile.component';
