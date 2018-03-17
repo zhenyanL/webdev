@@ -27,6 +27,7 @@ export class WidgetImageComponent implements OnInit {
         this.websiteId = param.wid;
       }
     );
+    console.log(this.widget.name);
   }
   save() {
     const text = this.widgetForm.value.widgetText;
