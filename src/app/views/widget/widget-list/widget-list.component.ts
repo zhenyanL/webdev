@@ -22,13 +22,13 @@ export class WidgetListComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (param: Params) => {
         this.pageId = param.pid;
+        this.userId = param.uid;
+        this.webId = param.wid;
          this.widgetService.findWidgetByPageId(this.pageId).subscribe(
           (widgets: Widget[]) => {
             this.widgets = widgets;
           }
         );
-        this.userId = param.uid;
-        this.webId = param.wid;
       }
     );
   }

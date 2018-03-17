@@ -21,13 +21,16 @@ export class WidgetTextComponent implements OnInit {
         this.userId = param.uid;
       }
     );
+    console.log(this.widget);
   }
   save() {
     const text = this.widgetForm.value.text;
     const size = this.widgetForm.value.widgetSize;
     const name = this.widgetForm.value.widgetName;
-    this.widgetService.updateWidget(this.widget.id, new Widget(name, this.widget.id, this.widget.widgetType,
-      this.widget.pageId, size, text, this.widget.width, this.widget.url)).subscribe(
+    const width = this.widgetForm.value.widgetWidth;
+    const isFormatted = this.widgetForm.value.widgetFormatted;
+    this.widgetService.updateWidget(this.widget.id, new Widget( this.widget.id,name, this.widget.widgetType,
+      this.widget.pageId, size, text, width, this.widget.url, isFormatted)).subscribe(
       (widget: Widget) => {
         alert( 'save successfully');
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});

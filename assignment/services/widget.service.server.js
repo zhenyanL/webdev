@@ -26,6 +26,36 @@ module.exports = function (app) {
   app.delete('/api/widget/:widgetId',deleteWidget);
   app.put('/api/page/:pageId/widget',changeIndex);
   app.post('/api/upload', upload.single('myFile') ,uploadImage);
+  app.post('/api/updateImage', upload.single('newFile'), updateImage);
+
+  function updateImage(req,res,next) {
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+    var userId = req.body.userId;
+    var width = req.body.width;
+    var text = req.body.text;
+    var widgetId = req.body.widgetId;
+    var name = req.body.widgetName;
+    var newFile = req.file;
+
+    var index = widgets.findIndex(function (widget) {
+      return widget.id === widgetId;
+    });
+    widgets[index].width = width;
+    widgets[index].text = text;
+
+    if(newFile != null){
+      var filename = newFile.filename;
+      var url = 'assets/uploads/'+filename;
+      widgets[index].url = url;
+    }
+    widgets[index].name = name;
+    var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+    // var callBackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+
+    res.redirect(callBackUrl);
+
+  }
 
 
 
@@ -36,6 +66,7 @@ module.exports = function (app) {
       var userId = req.body.userId;
       var width = req.body.width;
       var text = req.body.text;
+      var name = req.body.widgetName;
     //    console.log(websiteId);
     // console.log(pageId);
     // console.log(userId);
@@ -49,7 +80,7 @@ module.exports = function (app) {
       var size = myFile.size;
 
       var url = 'assets/uploads/'+filename;
-      var widget = {id:widgetId,widgetType:widgetType,pageId: pageId,size: size,text:text,width:width,url:url};
+      var widget = {id:widgetId,name: name,widgetType:widgetType,pageId: pageId,size: size,text:text,width:width,url:url};
       console.log(widget);
       widgets.push(widget);
       // var callBackUrl = process.env.CLI_ROOT+"/user/"+userId+"/website/"+websiteId
@@ -60,7 +91,9 @@ module.exports = function (app) {
       // var callBackUrl = "../../src/app//assignment/#/user/"+userId+"/website/"+websiteId;
     // 'user/:uid/website/:wid/page/:pid/widget'
       var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
-      res.redirect(callBackUrl);
+    // var callBackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+
+    res.redirect(callBackUrl);
       // res.sendFile("index.html");
       // res.sendFile(__dirname+'../../../src/index.html')
 
@@ -143,14 +176,16 @@ module.exports = function (app) {
     var foundWidget = widgets.find(function (widget) {
           return widget.id === widgetId;
     });
-    res.json({id: foundWidget.id, widgetType:foundWidget.widgetType, pageId: foundWidget.pageId, size: foundWidget.size,
-    text: foundWidget.text,width:foundWidget.width,url:foundWidget.url});
+    res.json({id: foundWidget.id,name:foundWidget.name, widgetType:foundWidget.widgetType, pageId: foundWidget.pageId, size: foundWidget.size,
+    text: foundWidget.text,width:foundWidget.width,url:foundWidget.url, isFormatted: foundWidget.isFormatted});
   }
   function updateWidget(req,res,next) {
     // const index = this.widgets.findIndex(widget => widget.id === widgetId);
     // this.widgets[index] = newWidget;
     var widgetId = req.params.widgetId;
     var newWidget = req.body;
+    console.log("before "+widgetId);
+    console.log("new widget "+newWidget.id);
     var index = widgets.findIndex(function (widget) {
       return widget.id === widgetId;
     });

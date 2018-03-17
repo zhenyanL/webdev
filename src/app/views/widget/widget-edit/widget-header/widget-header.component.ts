@@ -21,15 +21,18 @@ export class WidgetHeaderComponent implements OnInit {
         this.userId = param.uid;
       }
     );
+    console.log(this.widget.name);
   }
   save() {
     const text = this.widgetForm.value.widgetText;
     const size = this.widgetForm.value.widgetSize;
     const name = this.widgetForm.value.widgetName;
-    this.widgetService.updateWidget(this.widget.id, new Widget(name, this.widget.id, this.widget.widgetType,
-      this.widget.pageId, size, text, this.widget.width, this.widget.url)).subscribe(
+    console.log('id before send to back end' + this.widget.id);
+    this.widgetService.updateWidget(this.widget.id, new Widget( this.widget.id, name, this.widget.widgetType,
+      this.widget.pageId, size, text, this.widget.width, this.widget.url, this.widget.isFormatted)).subscribe(
       (widget: Widget) => {
         alert( 'save successfully');
+        console.log('id after send to back end' + widget.id);
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );

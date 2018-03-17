@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Widget} from '../../../../model/widget.model';
 import {ActivatedRoute, Params} from '@angular/router';
+import {WidgetService} from '../../../../service/widget.service';
 
 @Component({
   selector: 'app-heading',
@@ -10,11 +11,10 @@ import {ActivatedRoute, Params} from '@angular/router';
 export class HeadingComponent implements OnInit {
   @Input() widget: Widget;
 
-
   pageId: string;
   userId: string;
   webId: string;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -22,8 +22,10 @@ export class HeadingComponent implements OnInit {
         this.pageId = param.pid;
         this.webId = param.wid;
         this.userId = param.uid;
+        // this.widget = this.widgetService.findWidgetById()
       }
     );
+    console.log(this.widget.text + 'here');
   }
 
 }

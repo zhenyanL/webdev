@@ -24,7 +24,9 @@
 
     <div class="form-group">
       <label for="html">HTML Text</label>
-      <textarea class="form-control" id="html" rows="5" [(ngModel)]="widget.text" name="htmlText"></textarea>
+      <!--<textarea class="form-control" id="html" rows="5" [(ngModel)]="widget.text" name="htmlText"></textarea>-->
+
+      <quill-editor [(ngModel)]="widget.text" id="html" aria-placeholder="HTML" name="htmlText"></quill-editor>
     </div>
 
 

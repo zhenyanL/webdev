@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {WidgetService} from '../../../../../service/widget.service';
 import {NgForm} from '@angular/forms';
+import {isFormattedError} from '@angular/compiler';
 
 @Component({
   selector: 'app-new-text',
@@ -14,6 +15,7 @@ export class NewTextComponent implements OnInit {
   widgetId: string;
   userId: string;
   pageId: string;
+  // isFormatted: boolean = false;
   @ViewChild('widgetForm') widgetForm: NgForm;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
@@ -29,11 +31,19 @@ export class NewTextComponent implements OnInit {
       }
     );
   }
+  //
+  // checkBox(){
+  //   isFormatted = !isFormatted;
+  // }
+
   save() {
     const text = this.widgetForm.value.text;
     const size = this.widgetForm.value.widgetSize;
     const name = this.widgetForm.value.widgetName;
-    this.widgetService.createWidget(name, 'TEXT', this.pageId, size, text, '100%', 'url').subscribe(
+    const width = this.widgetForm.value.widgetWidth;
+    const isFormatted = this.widgetForm.value.widgetFormatted;
+    console.log(isFormatted);
+    this.widgetService.createWidget(name, 'TEXT', this.pageId, size, text, width, 'url', isFormatted).subscribe(
       (data: any) => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }

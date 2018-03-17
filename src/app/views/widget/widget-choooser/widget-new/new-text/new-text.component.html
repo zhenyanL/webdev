@@ -24,9 +24,25 @@
       <textarea class="form-control" id="text" placeholder="text" rows="5" ngModel name="text"></textarea>
     </div>
     <div class="form-group">
-      <label for="size">Size</label>
-      <input class="form-control" type="text" ngModel placeholder="size" name="widgetSize"  id="size">
+      <label for="size">Rows</label>
+      <input class="form-control" type="text" ngModel placeholder="rows" name="widgetSize"  id="size">
     </div>
+
+    <div class="form-group">
+      <label for="placeholder">Placeholder</label>
+      <input class="form-control"  id="placeholder" class="form-control"  ngModel name="widgetWidth">
+    </div>
+
+    <div class="input-group form-group">
+      <input type="text"
+             readonly
+             value="Formatted"
+             class="form-control"/>
+      <span class="input-group-addon">
+          <input ngModel name="widgetFormatted" type="checkbox"/>
+      </span>
+    </div>
+
     <div class="form-group">
       <a class="btn btn-danger form-control" type="button" [routerLink]="['../']">Cancel</a>
     </div>

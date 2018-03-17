@@ -30,7 +30,7 @@ export class NewYoutubeComponent implements OnInit {
     const width = this.widgetForm.value.width;
     const url = this.widgetForm.value.url;
     const name = this.widgetForm.value.widgetName;
-    this.widgetService.createWidget(name, 'YOUTUBE', this.pageId, '4', text, width, url).subscribe(
+    this.widgetService.createWidget(name, 'YOUTUBE', this.pageId, '4', text, width, url,false).subscribe(
       (data: any) => {
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
