@@ -91,14 +91,17 @@ module.exports = function (app) {
         .then(
           function (widget) {
             widget.url = url;
-            widgetModel.updateWidget(widgetId,widget)
-              .then(
-                function (data) {
-                  var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-                  res.redirect(callBackUrl);
-                }
-
-          );
+            widget.save();
+            var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+            res.redirect(callBackUrl);
+          //   widgetModel.updateWidget(widgetId,widget)
+          //     .then(
+          //       function (data) {
+          //         var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+          //         res.redirect(callBackUrl);
+          //       }
+          //
+          // );
 
           }
         );
