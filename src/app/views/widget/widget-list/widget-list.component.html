@@ -23,8 +23,8 @@
 
 <div class="container container-padding">
   <ul appSortable (newIndexes)="newIndexes($event)" class="list-group cl-list-group-borderless">
-    <li class="list-group-item cl-list-item-borderless" *ngFor="let widget of widgets" >
-      <div [ngSwitch]="widget.widgetType">
+    <li class="list-group-item cl-list-item-borderless" *ngFor="let widget of widgets | orderByPipe" >
+      <div [ngSwitch]="widget.type">
         <div *ngSwitchCase="'HEADING'"><app-heading [widget]="widget"></app-heading></div>
 
         <div *ngSwitchCase="'IMAGE'"><app-image [widget]="widget"></app-image></div>

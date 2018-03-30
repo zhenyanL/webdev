@@ -9,7 +9,7 @@ import {Widget} from '../../../../model/widget.model';
 })
 export class TextComponent implements OnInit {
 
-  @Input() widget: Widget;
+  @Input() widget: any;
 
 
   pageId: string;

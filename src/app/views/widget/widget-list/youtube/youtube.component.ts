@@ -8,7 +8,7 @@ import {Widget} from '../../../../model/widget.model';
   styleUrls: ['./youtube.component.css']
 })
 export class YoutubeComponent implements OnInit {
-  @Input() widget: Widget;
+  @Input() widget: any;
   public url: any;
   constructor(private domSanitizer: DomSanitizer) {
   }

@@ -13,7 +13,7 @@ import {PageService} from '../../../service/page.service';
 export class WidgetListComponent implements OnInit {
 
   pageId: string;
-  widgets: Widget[];
+  widgets: any[];
   userId: string;
   webId: string;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private pageService: PageService, private webService: WebsiteService) { }
@@ -25,7 +25,7 @@ export class WidgetListComponent implements OnInit {
         this.userId = param.uid;
         this.webId = param.wid;
          this.widgetService.findWidgetByPageId(this.pageId).subscribe(
-          (widgets: Widget[]) => {
+          (widgets: any[]) => {
             this.widgets = widgets;
           }
         );

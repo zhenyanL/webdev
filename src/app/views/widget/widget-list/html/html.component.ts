@@ -8,7 +8,7 @@ import {ActivatedRoute, Params} from '@angular/router';
   styleUrls: ['./html.component.css']
 })
 export class HtmlComponent implements OnInit {
-  @Input() widget: Widget;
+  @Input() widget: any;
 
 
   pageId: string;

@@ -9,7 +9,7 @@ import {WidgetService} from '../../../../service/widget.service';
   styleUrls: ['./heading.component.css']
 })
 export class HeadingComponent implements OnInit {
-  @Input() widget: Widget;
+  @Input() widget: any;
 
   pageId: string;
   userId: string;

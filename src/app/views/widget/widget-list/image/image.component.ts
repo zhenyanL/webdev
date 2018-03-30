@@ -8,7 +8,7 @@ import {Widget} from '../../../../model/widget.model';
 })
 export class ImageComponent implements OnInit {
 
-  @Input() widget: Widget;
+  @Input() widget: any;
   constructor() { }
 
   ngOnInit() {
