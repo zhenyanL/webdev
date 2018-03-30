@@ -63,10 +63,10 @@ module.exports = function (app) {
 
 
   function uploadImage(req,res,next) {
-      // var widgetId = req.body.widgetId;
-      // var websiteId = req.body.websiteId;
-      // var pageId = req.body.pageId;
-      // var userId = req.body.userId;
+      var widgetId = req.body.widgetId;
+      var websiteId = req.body.websiteId;
+      var pageId = req.body.pageId;
+      var userId = req.body.userId;
       // var width = req.body.width;
       // var text = req.body.text;
       // var name = req.body.widgetName;
@@ -78,7 +78,7 @@ module.exports = function (app) {
     //   var widgetId = (new Date()).getTime() + "";
     //   var widgetType = 'IMAGE';
 
-      var widgetId = req.body.widgetId;
+      // var widgetId = req.body.widgetId;
 
       var myFile = req.file;
       console.log(myFile);
@@ -90,8 +90,12 @@ module.exports = function (app) {
       widgetModel.findWidgetById(widgetId)
         .then(
           function (widget) {
+            // widget.name = name;
+            // widget.text = text;
+            // widget.width = width;
             widget.url = url;
             widget.save();
+            // var callBackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/";
             var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
             res.redirect(callBackUrl);
           //   widgetModel.updateWidget(widgetId,widget)
