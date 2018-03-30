@@ -29,36 +29,36 @@ module.exports = function (app) {
   app.delete('/api/widget/:widgetId',deleteWidget);
   app.put('/api/page/:pageId/widget',changeIndex);
   app.post('/api/upload', upload.single('myFile') ,uploadImage);
-  app.post('/api/update', upload.single('newFile'), updateImage);
-
-  function updateImage(req,res,next) {
-    var websiteId = req.body.websiteId;
-    var pageId = req.body.pageId;
-    var userId = req.body.userId;
-    var width = req.body.width;
-    var text = req.body.text;
-    var widgetId = req.body.widgetId;
-    var name = req.body.widgetName;
-    var newFile = req.file;
-
-    var index = widgets.findIndex(function (widget) {
-      return widget.id === widgetId;
-    });
-    widgets[index].width = width;
-    widgets[index].text = text;
-
-    if(newFile !== undefined){
-      var filename = newFile.filename;
-      var url = 'assets/uploads/'+filename;
-      widgets[index].url = url;
-    }
-    widgets[index].name = name;
-    var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
-    // var callBackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
-
-    res.redirect(callBackUrl);
-
-  }
+  // app.post('/api/update', upload.single('newFile'), updateImage);
+  //
+  // function updateImage(req,res,next) {
+  //   var websiteId = req.body.websiteId;
+  //   var pageId = req.body.pageId;
+  //   var userId = req.body.userId;
+  //   var width = req.body.width;
+  //   var text = req.body.text;
+  //   var widgetId = req.body.widgetId;
+  //   var name = req.body.widgetName;
+  //   var newFile = req.file;
+  //
+  //   var index = widgets.findIndex(function (widget) {
+  //     return widget.id === widgetId;
+  //   });
+  //   widgets[index].width = width;
+  //   widgets[index].text = text;
+  //
+  //   if(newFile !== undefined){
+  //     var filename = newFile.filename;
+  //     var url = 'assets/uploads/'+filename;
+  //     widgets[index].url = url;
+  //   }
+  //   widgets[index].name = name;
+  //   var callBackUrl = "https://web-zhenyan.herokuapp.com/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+  //   // var callBackUrl = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
+  //
+  //   res.redirect(callBackUrl);
+  //
+  // }
 
 
 
