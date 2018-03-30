@@ -11,7 +11,7 @@ import {NgForm} from '@angular/forms';
 })
 export class WidgetHtmlComponent implements OnInit {
 
-  @Input() widget: Widget;
+  @Input() widget: any;
   @ViewChild('widgetForm') widgetForm: NgForm;
   userId: string;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
@@ -27,9 +27,8 @@ export class WidgetHtmlComponent implements OnInit {
     const text = this.widgetForm.value.htmlText;
     const name = this.widgetForm.value.widgetName;
     // const size = this.widgetForm.value.widgetSize;
-    this.widgetService.updateWidget(this.widget.id, new Widget(this.widget.id,name,  this.widget.widgetType,
-      this.widget.pageId, this.widget.size, text, this.widget.width, this.widget.url, this.widget.isFormatted)).subscribe(
-      (widget: Widget) => {
+    this.widgetService.updateWidget(this.widget._id, {id: this.widget._id, name: name, type: this.widget.type, pageId: this.widget.pageId, text: text}).subscribe(
+      (widget: any) => {
         alert( 'save successfully');
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
@@ -37,9 +36,9 @@ export class WidgetHtmlComponent implements OnInit {
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widget.id).subscribe(
+    this.widgetService.deleteWidget(this.widget._id).subscribe(
       (data: any) => {
-        this.router.navigate(['../'],  {relativeTo:this.activatedRoute});
+        this.router.navigate(['../'],  {relativeTo: this.activatedRoute});
       }
     );
   }

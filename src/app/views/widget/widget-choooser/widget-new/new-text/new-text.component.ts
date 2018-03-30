@@ -43,11 +43,11 @@ export class NewTextComponent implements OnInit {
     const width = this.widgetForm.value.widgetWidth;
     const isFormatted = this.widgetForm.value.widgetFormatted;
     console.log(isFormatted);
-    this.widgetService.createWidget(name, 'TEXT', this.pageId, size, text, width, 'url', isFormatted).subscribe(
-      (data: any) => {
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-      }
-    );
+    // this.widgetService.createWidget(name, 'TEXT', this.pageId, size, text, width, 'url', isFormatted).subscribe(
+    //   (data: any) => {
+    //     this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+    //   }
+    // );
   }
 
 

@@ -10,7 +10,7 @@ import {Website} from '../../../model/website.model';
 })
 export class WebsiteListComponent implements OnInit {
   id: string;
-  websiteList: Website[];
+  websiteList: any[];
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -18,7 +18,7 @@ export class WebsiteListComponent implements OnInit {
       (param: Params) => {
         this.id = param.uid;
          this.websiteService.findWebsitesByUser(this.id).subscribe(
-          (websites: Website[]) => {
+          (websites: any[]) => {
             this.websiteList = websites;
           }
         );
@@ -26,6 +26,6 @@ export class WebsiteListComponent implements OnInit {
     );
   }
   clickPage(website: Website) {
-    this.router.navigate(['/user', this.id, 'website', website.id, 'page']);
+    this.router.navigate(['/user', this.id, 'website', website._id, 'page']);
   }
 }

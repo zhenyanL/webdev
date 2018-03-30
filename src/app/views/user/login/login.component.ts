@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       subscribe(
       ( user: User) => {
         if (user) {
-          this.router.navigate(['/user', user.id]);
+          this.router.navigate(['/user', user._id]);
         } else {
           this.matched = false;
           console.log(this.matched);

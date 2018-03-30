@@ -3,12 +3,14 @@
 module.exports = function (app) {
 
 
-  var users = [
-    {id: "123", userName: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonderland", email: "123@gmail.com"  },
-    {id: "234", userName: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email: "123@gmail.com"  },
-    {id: "345", userName: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia", email: "123@gmail.com"  },
-    {id: "456", userName: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: "123@gmail.com" }
-  ];
+  // var users = [
+  //   {id: "123", userName: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonderland", email: "123@gmail.com"  },
+  //   {id: "234", userName: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email: "123@gmail.com"  },
+  //   {id: "345", userName: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia", email: "123@gmail.com"  },
+  //   {id: "456", userName: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: "123@gmail.com" }
+  // ];
+
+  var userModel = require('../model/user/user.model.server');
 
   // app.get('/api/user/find',findUserByUsername);
   app.post('/api/user',createUser);
@@ -20,10 +22,30 @@ module.exports = function (app) {
   function createUser(req,res,next) {
 
     var user = req.body;
-    users.push(user);
+    // users.push(user);
     // console.log(users.toString());
     // console.log(req.body);
-    res.status(200).send(user);
+    console.log("server side")
+    userModel.createUser(user).then(
+      // function (err,createdUser) {
+      //   console.log("back"+createdUser);
+      //   if(err){
+      //     return res.statusCode(400).send(error);
+      //   }
+      //
+      //     console.log("Server"+ createdUser);
+      //     return res.status(200).send(createdUser);
+      //
+      // }
+      function (user) {
+        console.log("back "+user);
+        res.json(user);
+      },
+      function (error) {
+        res.statusCode(400).send(error);
+      }
+    );
+
   }
 
   function updateUserById(req, res){
@@ -33,16 +55,34 @@ module.exports = function (app) {
     console.log(req.body);
     console.log("update user: " + userId + " " + user.firstName + " " + user.lastName);
 
-    for(var i = 0; i < users.length; i++) {
-      if (users[i].id === userId) {
-        users[i].firstName = user.firstName;
-        users[i].lastName = user.lastName;
-
-        res.status(200).send(users[i]);
-        return;
+    userModel.updateUser(userId,user).
+      then(
+        function (user) {
+          res.json(user);
+        },
+      function (err) {
+        res.statusCode(400).send(err);
       }
-    }
-    res.status(404).send("not found!");
+    )
+    // exec(
+    //   function (err,user) {
+    //     if(err){
+    //       return res.sendStatus(400).send(err);
+    //     }
+    //     return  res.json(user);
+    //   }
+    // );
+
+    // for(var i = 0; i < users.length; i++) {
+    //   if (users[i].id === userId) {
+    //     users[i].firstName = user.firstName;
+    //     users[i].lastName = user.lastName;
+    //
+    //     res.status(200).send(users[i]);
+    //     return;
+    //   }
+    // }
+    // res.status(404).send("not found!");
   }
 
 
@@ -50,12 +90,23 @@ module.exports = function (app) {
   function findUserById(req,res,next){
     // console.log("????");
     var id = req.params.userId;
-    // console.log(id);
-    var user = users.find(function(user){
-      return user.id === id;
-    });
-    // console.log(user);
-    res.json(user);
+    userModel.findUserById(id).
+    exec(
+      function (err,user) {
+        if(err){
+          return res.sendStatus(400).send(err);
+        }
+        return  res.json(user);
+      }
+    );
+
+    //
+    // // console.log(id);
+    // var user = users.find(function(user){
+    //   return user.id === id;
+    // });
+    // // console.log(user);
+    // res.json(user);
   }
 
   function findUserByCredential(req,res,next){
@@ -65,25 +116,36 @@ module.exports = function (app) {
     var password = req.query["password"];
     console.log(username);
     console.log(password);
-    var foundUser = null;
-    if(username && password){
-      users.forEach(function (user) {
-        console.log(user);
-      });
-      users.forEach(function (user) {
-        console.log(user.userName);
-        console.log(user.password);
-        if(user.userName === username && user.password === password){
-          foundUser = user;
+    userModel.findByCredential(username,password).
+    exec(
+      function (err,user) {
+        if(err){
+          return res.sendStatus(400).send(err);
         }
-      });
-      // user = users.find(function(user){
-      //   return (user.userName === username && user.password === password);
-      // });
-    }
-    // res.send("ok");
-    console.log(foundUser);
-    res.json(foundUser);
+        return res.json(user);
+      }
+    );
+
+    //
+    // var foundUser = null;
+    // if(username && password){
+    //   users.forEach(function (user) {
+    //     console.log(user);
+    //   });
+    //   users.forEach(function (user) {
+    //     console.log(user.userName);
+    //     console.log(user.password);
+    //     if(user.userName === username && user.password === password){
+    //       foundUser = user;
+    //     }
+    //   });
+    //   // user = users.find(function(user){
+    //   //   return (user.userName === username && user.password === password);
+    //   // });
+    // }
+    // // res.send("ok");
+    // console.log(foundUser);
+    // res.json(foundUser);
   }
 
 

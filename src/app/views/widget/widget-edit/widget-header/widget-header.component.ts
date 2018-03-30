@@ -10,7 +10,7 @@ import {WidgetService} from '../../../../service/widget.service';
   styleUrls: ['./widget-header.component.css']
 })
 export class WidgetHeaderComponent implements OnInit {
-  @Input() widget: Widget;
+  @Input() widget: any;
   @ViewChild('widgetForm') widgetForm: NgForm;
   userId: string;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
@@ -27,21 +27,21 @@ export class WidgetHeaderComponent implements OnInit {
     const text = this.widgetForm.value.widgetText;
     const size = this.widgetForm.value.widgetSize;
     const name = this.widgetForm.value.widgetName;
-    console.log('id before send to back end' + this.widget.id);
-    this.widgetService.updateWidget(this.widget.id, new Widget( this.widget.id, name, this.widget.widgetType,
-      this.widget.pageId, size, text, this.widget.width, this.widget.url, this.widget.isFormatted)).subscribe(
-      (widget: Widget) => {
+    console.log('id before send to back end' + this.widget._id);
+    this.widgetService.updateWidget(this.widget._id, { id:  this.widget._id, name: name, type: this.widget.type,
+      pageId: this.widget.pageId, size: size, text: text} ).subscribe(
+      (widget: any) => {
         alert( 'save successfully');
-        console.log('id after send to back end' + widget.id);
+        console.log('id after send to back end' + widget._id);
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widget.id).subscribe(
+    this.widgetService.deleteWidget(this.widget._id).subscribe(
       (data: any) => {
-        this.router.navigate(['../'],  {relativeTo:this.activatedRoute});
+        this.router.navigate(['../'],  {relativeTo: this.activatedRoute});
       }
     );
   }

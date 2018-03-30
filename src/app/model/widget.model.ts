@@ -1,5 +1,5 @@
 export class Widget {
-  id: string;
+  _id: string;
   name: string;
   widgetType: string;
   pageId: string;
@@ -10,7 +10,7 @@ export class Widget {
   isFormatted: boolean;
   constructor(id: string, name: string, widgetType: string, pageId: string, size: string, text: string, width: string, url: string,
               isFormatted: boolean) {
-    this.id = id;
+    this._id = id;
     this.name = name;
     this.widgetType = widgetType;
     this.pageId = pageId;

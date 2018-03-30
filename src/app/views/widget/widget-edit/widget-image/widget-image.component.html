@@ -8,57 +8,80 @@
     <a class="navbar-brand " [routerLink]="['./']">Widgets Edit</a>
 
     <!--<a (click)="save()" class="navbar-text pull-right"><span class="glyphicon glyphicon-ok"></span></a>-->
-    <!--<a (click)="save()" class=" pull-right navbar-text" ><span class="glyphicon glyphicon-ok"></span></a>-->
+    <a (click)="save()" class=" pull-right navbar-text" ><span class="glyphicon glyphicon-ok"></span></a>
   </div>
 </nav>
 
 <div class="container">
-  <form ngNoForm action="{{baseUrl}}/api/update" method="post" enctype="multipart/form-data">
+  <form #widgetForm="ngForm">
 
     <div class="form-group">
       <label for="name">Name</label>
-      <input class="form-control" type="text" value={{widget.name}} id="name" name="widgetName">
+      <input class="form-control" type="text" [(ngModel)] =widget.name id="name" name="widgetName">
     </div>
 
-    <div class="form-group">
-      <label for="file">Upload</label>
-      <input name="newFile" class="form-control" type="file"  id="file">
-    </div>
-
-    <!--<div class="form-group">-->
-    <!--<label for="file">Upload</label>-->
-    <!--<input  name="myFile"   type="file" class="form-control" id="file"/>-->
-    <!--</div>-->
 
     <div class="form-group">
       <label for="text">Text</label>
-      <input name ="text" class="form-control" type="text" value={{widget.text}}  id="text">
+      <input name ="text" class="form-control" type="text" [(ngModel)] = widget.text  id="text">
     </div>
 
     <div class="form-group">
       <label for="width">Width</label>
-      <input name ="width" class="form-control" type="text" value={{widget.width}} id="width">
-    </div>
-
-    <!--<input  name="widgetId" value="{{widgetId}}"   style="display: none"/>-->
-    <input  name="websiteId" value="{{websiteId}}"   style="display: none"/>
-    <input  name="pageId" value="{{pageId}}"   style="display: none"/>
-    <input  name="userId" value="{{userId}}"   style="display: none"/>
-    <input  name="widgetId" value="{{widget.id}}"   style="display: none"/>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-block btn-primary">Update Image</button>
-      <!--<a class="btn btn-primary form-control">Upload</a>-->
+      <input name ="width" class="form-control" type="text" [(ngModel)] = widget.width id="width">
     </div>
 
     <div class="form-group">
-      <button class="btn btn-danger form-control" type="button" (click)="deleteWidget()">Delete</button>
+      <label for="url">URL</label>
+      <input name ="url" class="form-control" type="text" [(ngModel)] = widget.url id="url">
     </div>
 
 
 
   </form>
 
+
+  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+
+
+
+    <!--<div class="form-group">-->
+    <!--<label for="file">Upload</label>-->
+    <!--<input  name="myFile"   type="file" class="form-control" id="file"/>-->
+    <!--</div>-->
+
+    <!--<input  name="widgetId" value="{{widgetId}}"   style="display: none"/>-->
+    <!--<input  name="websiteId" value="{{websiteId}}"   style="display: none"/>-->
+    <!--<input  name="pageId" value="{{pageId}}"   style="display: none"/>-->
+    <!--<input  name="userId" value="{{userId}}"   style="display: none"/>-->
+    <input  name="widgetId" value="{{widget.id}}"   style="display: none"/>
+
+    <div class="form-group">
+      <label for="file">Upload</label>
+      <input name="newFile" class="form-control" type="file"  id="file">
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Upload Image</button>
+      <!--<a class="btn btn-primary form-control">Upload</a>-->
+    </div>
+
+
+  </form>
+
+  <div class="form-group">
+    <a class="btn btn-primary"
+       [routerLink]="['/user/'+userId+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId+'/flickr']">flickr search</a>
+
+  </div>
+
+
+
+
+
+  <div class="form-group">
+    <button class="btn btn-danger form-control" type="button" (click)="deleteWidget()">Delete</button>
+  </div>
 
 
 

@@ -23,7 +23,7 @@ export class PageService {
     // const id = Math.random().toString();
     // this.pages.push(new Page(id, name, websiteId, title));
     const url = environment.baseUrl + '/api/website/' + websiteId + '/page';
-    return this.http.post(url,new Page('', name, websiteId, title)).map(
+    return this.http.post(url, {name: name, websiteId: websiteId, title: title}).map(
       (response: Response) => {
         return response.json();
       }

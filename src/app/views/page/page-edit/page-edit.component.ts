@@ -19,7 +19,7 @@ export class PageEditComponent implements OnInit {
   @ViewChild('editPageForm') editPageForm: NgForm;
 
   pageId: string;
-  page: Page;
+  page: any;
   userId: string;
   constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private websiteService: WebsiteService, private router: Router) { }
 
@@ -28,7 +28,7 @@ export class PageEditComponent implements OnInit {
       (param: Params) => {
         this.pageId = param.pid;
         this.pageService.findPageById(this.pageId).subscribe(
-          (page: Page) => {
+          (page: any) => {
             this.page = page;
           }
         );
@@ -40,10 +40,12 @@ export class PageEditComponent implements OnInit {
   editPage() {
       const name = this.editPageForm.value.pageName;
       const title = this.editPageForm.value.pageTitle;
-      this.pageService.updatePage(this.pageId, new Page(this.pageId, name, this.page.websiteId, title)).subscribe(
-        (page: Page) => {
+      this.page.name = name;
+      this.page.title = title;
+      this.pageService.updatePage(this.pageId, this.page).subscribe(
+        (page: any) => {
           alert( 'save successfully');
-          this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
         }
       );
   }
@@ -51,7 +53,7 @@ export class PageEditComponent implements OnInit {
   deletePage() {
     this.pageService.deletePage(this.pageId).subscribe(
       (data: any) => {
-        this.router.navigate(['../'],{relativeTo: this.activatedRoute});
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
     );
   }

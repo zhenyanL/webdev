@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       this.userService.createUser(userName, password, firstName, lastName)
         .subscribe(
           (data: any) => {
-            this.router.navigate(['/user', data.id]);
+            this.router.navigate(['/user', data._id]);
           }
         );
     }

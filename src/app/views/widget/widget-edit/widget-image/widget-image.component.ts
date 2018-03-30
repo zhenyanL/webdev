@@ -11,12 +11,13 @@ import {environment} from '../../../../../environments/environment';
   styleUrls: ['./widget-image.component.css']
 })
 export class WidgetImageComponent implements OnInit {
-  @Input() widget: Widget;
+  @Input() widget: any;
   @ViewChild('widgetForm') widgetForm: NgForm;
   userId: string;
   pageId: string;
   websiteId: string;
   baseUrl: string = environment.baseUrl;
+  widgetId;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
@@ -25,17 +26,22 @@ export class WidgetImageComponent implements OnInit {
         this.userId = param.uid;
         this.pageId = param.pid;
         this.websiteId = param.wid;
+        this.widgetId = param.wdid;
       }
     );
     console.log(this.widget.name);
   }
+
   save() {
-    const text = this.widgetForm.value.widgetText;
-    const size = this.widgetForm.value.widgetSize;
+    const text = this.widgetForm.value.text;
+    // const size = this.widgetForm.value.widgetSize;
     const name = this.widgetForm.value.widgetName;
-    this.widgetService.updateWidget(this.widget.id, new Widget(this.widget.id, name,  this.widget.widgetType,
-      this.widget.pageId, size, text, this.widget.width, this.widget.url, this.widget.isFormatted)).subscribe(
-      (widget: Widget) => {
+    const width = this.widgetForm.value.width;
+    const url = this.widgetForm.value.url;
+    // console.log('save here');
+    this.widgetService.updateWidget(this.widget._id,{id: this.widget._id,
+    name: name, type: this.widget.type, pageId: this.widget.pageId, width: width, text: text, url: url}).subscribe(
+      (widget: any) => {
         alert( 'save successfully');
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
       }
@@ -43,7 +49,7 @@ export class WidgetImageComponent implements OnInit {
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widget.id).subscribe(
+    this.widgetService.deleteWidget(this.widget._id).subscribe(
       (data: any) => {
         this.router.navigate(['../'],  {relativeTo:this.activatedRoute});
       }

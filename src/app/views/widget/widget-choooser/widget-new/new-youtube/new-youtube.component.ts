@@ -29,12 +29,12 @@ export class NewYoutubeComponent implements OnInit {
     const text = this.widgetForm.value.widgetText;
     const width = this.widgetForm.value.width;
     const url = this.widgetForm.value.url;
-    const name = this.widgetForm.value.widgetName;
-    this.widgetService.createWidget(name, 'YOUTUBE', this.pageId, '4', text, width, url,false).subscribe(
-      (data: any) => {
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-      }
-    );
+    // const name = this.widgetForm.value.widgetName;
+    // this.widgetService.createWidget(name, 'YOUTUBE', this.pageId, '4', text, width, url,false).subscribe(
+    //   (data: any) => {
+    //     this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+    //   }
+    // );
   }
 
 }

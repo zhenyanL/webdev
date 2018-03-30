@@ -27,7 +27,7 @@ export class WebsiteNewComponent implements OnInit {
     const name = this.newWebForm.value.webName;
     const description = this.newWebForm.value.description;
     const website = new Website('', name, this.developerId, description);
-    this.webService.createWebsite(website).subscribe(
+    this.webService.createWebsite({userId: this.developerId, name: name,  description: description}).subscribe(
       (data: any) => {
         this.router.navigate(['user', this.developerId, 'website']);
       }

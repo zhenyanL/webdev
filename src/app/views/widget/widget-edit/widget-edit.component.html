@@ -2,7 +2,7 @@
 
 
 
-<div [ngSwitch]="widget.widgetType">
+<div [ngSwitch]="widget.type">
   <div *ngSwitchCase="'HEADING'"><app-widget-header [widget]="widget"></app-widget-header></div>
 
   <div *ngSwitchCase="'IMAGE'"><app-widget-image [widget]="widget"></app-widget-image></div>

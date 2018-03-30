@@ -11,7 +11,7 @@ import {NgForm} from '@angular/forms';
 })
 export class WebsiteEditComponent implements OnInit {
   id: string;
-  website: Website;
+  website;
   @ViewChild('webEditForm') webEditForm: NgForm;
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -20,7 +20,7 @@ export class WebsiteEditComponent implements OnInit {
       (param: Params) => {
         this.id = param.wid;
         this.websiteService.findWebsiteById(this.id).subscribe(
-          (website: Website) => {
+          (website: any) => {
             this.website = website;
           }
         );
@@ -31,10 +31,11 @@ export class WebsiteEditComponent implements OnInit {
   editWeb() {
       const name = this.webEditForm.value.webName;
       const description = this.webEditForm.value.description;
-      this.websiteService.updateWebsite(this.id, new Website(this.id, name, this.website.developerId, description)).subscribe(
+      this.websiteService.updateWebsite(this.id,
+        {id: this.id, name: name, pages: this.website.pages, userId: this.website.userId, description: description}).subscribe(
         (website: Website) => {
           alert( 'save successfully');
-          this.router.navigate(['/user', this.website.developerId, 'website']);
+          this.router.navigate(['/user', this.website.userId, 'website']);
         }
       );
   }

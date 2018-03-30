@@ -20,16 +20,16 @@ export class WidgetService {
 
   constructor(private http: Http) { }
 
-  createWidget(name: string, widgetType: string, pageId: string, size: string, text: string, width: string, url: string,
-               isFormatted: boolean) {
+  // createWidget(name: string, widgetType: string, pageId: string, size: string, text: string, width: string, url: string,
+  //              isFormatted: boolean) {
     // actually this should done in the server side
     // const id = Math.random().toString();
     // this.widgets.push(new Widget(id, widgetType, pageId, size, text, width, url));
-
+    createWidget(widget) {
 
     // '/api/page/:pageId/widget'
-    const serverUrl = environment.baseUrl +     '/api/page/' + pageId + '/widget';
-    return this.http.post(serverUrl, new Widget('', name, widgetType, pageId, size, text, width, url, isFormatted)).map(
+    const serverUrl = environment.baseUrl +     '/api/page/' + widget.pageId + '/widget';
+    return this.http.post(serverUrl, widget).map(
       (response: Response) => {
         return response.json();
       }
@@ -68,7 +68,7 @@ export class WidgetService {
 
   // '/api/widget/:widgetId'
 
-  updateWidget(widgetId: string, newWidget: Widget) {
+  updateWidget(widgetId: string, newWidget: any) {
     // const index = this.widgets.findIndex(widget => widget.id === widgetId);
     // this.widgets[index] = newWidget;
     const url = environment.baseUrl + '/api/widget/' + widgetId;
@@ -78,6 +78,10 @@ export class WidgetService {
       }
     );
   }
+  //
+  // updateWidgetUrl(widgetId: string, url: string){
+  //    const serverApi = environment.baseUrl+'/api/widget'
+  // }
 
   // '/api/widget/:widgetId'
   deleteWidget(widgetId: string) {

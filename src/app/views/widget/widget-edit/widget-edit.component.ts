@@ -11,7 +11,7 @@ import {WidgetService} from '../../../service/widget.service';
 export class WidgetEditComponent implements OnInit {
 
   widgetId: string;
-  widget: Widget;
+  widget: any;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class WidgetEditComponent implements OnInit {
       (param: Params) => {
         this.widgetId = param.wdid;
          this.widgetService.findWidgetById(this.widgetId).subscribe(
-          (widget: Widget) => {
+          (widget: any) => {
             this.widget = widget;
           }
         );

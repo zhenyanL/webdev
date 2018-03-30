@@ -41,6 +41,9 @@ import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widg
 import {NewTextComponent} from './views/widget/widget-choooser/widget-new/new-text/new-text.component';
 import { TextComponent } from './views/widget/widget-list/text/text.component';
 import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
+import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {FlickrService} from './service/flickr.service';
+import { OrderByPipePipe } from './views/widget/widget-list/order-by-pipe.pipe';
 
 
 
@@ -78,6 +81,8 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     NewTextComponent,
     TextComponent,
     WidgetTextComponent,
+    FlickrImageSearchComponent,
+    OrderByPipePipe,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +91,7 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     HttpModule,
     QuillEditorModule
   ],
-  providers: [UserService, PageService, WebsiteService, WidgetService],
+  providers: [UserService, PageService, WebsiteService, WidgetService, FlickrService],
   bootstrap: [AppComponent]
   // decide where you start
 })

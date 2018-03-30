@@ -34,7 +34,7 @@ export class PageNewComponent implements OnInit {
     const name = this.newPageForm.value.pageName;
     const title = this.newPageForm.value.pageTitle;
     this.pageService.createPage(this.webId, name, title).subscribe(
-      (page: Page) => {
+      (page: any) => {
         this.router.navigate(['user', this.userId, 'website', this.webId, 'page']);
       }
     );

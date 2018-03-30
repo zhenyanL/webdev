@@ -17,13 +17,13 @@ export class UserService {
     // this.users.push(user);
     // return user;
     // http://localhost:3100/api/user
-    const id = Math.random().toString();
-    const user = new User(id, userName, password, firstName, lastName, '');
+    // const id = Math.random().toString();
+    // const user = new User(id, userName, password, firstName, lastName, '');
     const url =  environment.baseUrl + '/api/user';
-    return this.http.post(url, user)
+    return this.http.post(url, {userName: userName, password : password, firstName : firstName , lastName: lastName})
       .map( (response: Response) => {
-      return response.json();
-    });
+        return response.json();
+      });
   }
 
   findUserById(userId: string) {
@@ -45,14 +45,14 @@ export class UserService {
     // return this.users.find(user => user.userName === userName && user.password === password);
     const url = environment.baseUrl + '/api/user?username=' + userName + '&password=' + password;
     return this.http.get(url).
-      map(
+    map(
       (response: Response) => {
         return response.text().length ? response.json() : null;
         // return response.json();
       });
   }
   updateUser(userId: string, user) {
-    const url = environment.baseUrl + '/api/user/' + user.id;
+    const url = environment.baseUrl + '/api/user/' + user._id;
     console.log('angular:' + url);
     return this.http.put(url, user).map((response: Response) => {
       return response.json();

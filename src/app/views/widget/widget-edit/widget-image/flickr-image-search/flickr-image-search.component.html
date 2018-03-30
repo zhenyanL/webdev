@@ -1,0 +1,68 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid ">
+
+
+    <a [routerLink]="['../']" class="navbar-text pull-left"><span class="glyphicon glyphicon-menu-left"></span></a>
+
+
+    <a class="navbar-brand " [routerLink]="['./']">Search Flickr</a>
+
+    <!--<a (click)="save()" class="navbar-text pull-right"><span class="glyphicon glyphicon-ok"></span></a>-->
+    <!--<a (click)="save()" class=" pull-right navbar-text" ><span class="glyphicon glyphicon-ok"></span></a>-->
+  </div>
+</nav>
+  <div class="container">
+    <div class="input-group">
+      <input [(ngModel)]="searchContent" type="text" class="form-control">
+      <span class="input-group-btn">
+                <a (click)="searchPhoto()" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+            </span>
+    </div>
+
+    <p></p>
+
+    <div class="row">
+      <div *ngFor="let photo of photos['photo']" class="col-xs-4">
+        <img    (click)="selectPhoto(photo)"
+                width="100%"
+                [src] = "['https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' +   photo.id + '_' + photo.secret + '_s.jpg']"/>
+        <p></p>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+    <!--<div class="container">-->
+      <!--<input type="text" [(ngModel)]="searchContent" class="form-control">-->
+      <!--<a (click)="searchPhoto()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></a>-->
+    <!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid ">
+
+    <a [routerLink]="['/user',userId]" class="navbar-text pull-right"><span class="glyphicon glyphicon-user"></span></a>
+
+  </div>
+</nav>

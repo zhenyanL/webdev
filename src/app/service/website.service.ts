@@ -15,10 +15,10 @@ constructor(private http: Http) { }
 
 
 
-  createWebsite(website: Website) {
+  createWebsite(website) {
     // const id = Math.random().toString();
     // this.websites.push(new Website(id, name, userId, description));
-    const url = environment.baseUrl + '/api/user/' + website.developerId + '/website';
+    const url = environment.baseUrl + '/api/user/' + website.userId + '/website';
     return this.http.post(url, website).map(
       (response: Response) => {
         return response.json();
@@ -54,7 +54,7 @@ constructor(private http: Http) { }
     );
   }
 
-  updateWebsite(websiteId: string, newWebsite: Website) {
+  updateWebsite(websiteId: string, newWebsite) {
 
     // const index: number = this.websites.findIndex(website => website.id === websiteId);
     // this.websites[index] = newWebsite;

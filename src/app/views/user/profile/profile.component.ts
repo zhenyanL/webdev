@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     console.log('registerrrrr');
 
-    //the unaffected error when open this page " Cannot read property " is because this is a asynchronous call
-    //before it came back , user is null. so user.userName is wrong
+    // the unaffected error when open this page " Cannot read property " is because this is a asynchronous call
+    // before it came back , user is null. so user.userName is wrong
     this.route.params.subscribe(
       (param: Params) => {
         this.id = param.uid;
@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
     const email = this.profileForm.value.email;
     const firstName = this.profileForm.value.firstName;
     const lastName = this.profileForm.value.lastName;
-   this.userService.updateUser(this.user.id, new User(this.user.id, userName, this.user.password, firstName, lastName, email)).
+   this.userService.updateUser(this.user._id, new User(this.user._id, userName, this.user.password, firstName, lastName, email)).
         subscribe(
             (data: User) => {
               alert( 'save successfully' );

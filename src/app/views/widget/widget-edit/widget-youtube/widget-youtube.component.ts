@@ -10,7 +10,7 @@ import {WidgetService} from '../../../../service/widget.service';
   styleUrls: ['./widget-youtube.component.css']
 })
 export class WidgetYoutubeComponent implements OnInit {
-  @Input() widget: Widget;
+  @Input() widget: any;
   @ViewChild('widgetForm') widgetForm: NgForm;
   userId: string;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
@@ -24,10 +24,11 @@ export class WidgetYoutubeComponent implements OnInit {
   }
   save() {
     const text = this.widgetForm.value.widgetText;
-    const size = this.widgetForm.value.widgetSize;
+    const width = this.widgetForm.value.width;
     const name = this.widgetForm.value.widgetName;
-    this.widgetService.updateWidget(this.widget.id, new Widget( this.widget.id, name,this.widget.widgetType,
-      this.widget.pageId, size, text, this.widget.width, this.widget.url, this.widget.isFormatted)).subscribe(
+    const url = this.widgetForm.value.url;
+    this.widgetService.updateWidget(this.widget._id, {id: this.widget._id, name: name,
+      type: this.widget.type, pageId: this.widget.pageId, width: width, url: url, text: text}).subscribe(
       (widget: Widget) => {
         alert( 'save successfully');
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
@@ -36,7 +37,7 @@ export class WidgetYoutubeComponent implements OnInit {
   }
 
   deleteWidget() {
-    this.widgetService.deleteWidget(this.widget.id).subscribe(
+    this.widgetService.deleteWidget(this.widget._id).subscribe(
       (data: any) => {
         this.router.navigate(['../'],  {relativeTo: this.activatedRoute});
       }

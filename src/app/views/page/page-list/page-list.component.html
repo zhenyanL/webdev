@@ -16,8 +16,8 @@
 <div class="container">
   <ul class="list-group cl-list-group-borderless">
     <li class="list-group-item cl-list-item-borderless" *ngFor="let page of pages">
-      <a [routerLink]="page.id" ><span class="glyphicon glyphicon-cog pull-right"></span></a>
-      <a [routerLink]="['/user',userId,'website',webId,'page',page.id,'widget']">{{page.name}}</a>
+      <a [routerLink]="page._id" ><span class="glyphicon glyphicon-cog pull-right"></span></a>
+      <a [routerLink]="['/user',userId,'website',webId,'page',page._id,'widget']">{{page.name}}</a>
     </li>
   </ul>
 </div>
