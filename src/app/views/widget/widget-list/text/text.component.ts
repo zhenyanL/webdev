@@ -23,6 +23,8 @@ export class TextComponent implements OnInit {
         this.pageId = param.pid;
         this.webId = param.wid;
         this.userId = param.uid;
+        console.log('??????????????????????????');
+        console.log(this.widget.formatted);
       }
     );
   }

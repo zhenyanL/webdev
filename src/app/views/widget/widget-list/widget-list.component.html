@@ -34,7 +34,9 @@
         <!--<div *ngSwitchCase="'HTML'" [innerHTML]="widget.text"></div>-->
         <div *ngSwitchCase="'HTML'"><app-html [widget]="widget"></app-html></div>
 
-        <div *ngSwitchCase="'TEXT'"><app-html [widget]="widget"></app-html></div>
+        <!--<div *ngSwitchCase="'TEXT'"><app-html [widget]="widget"></app-html></div>-->
+
+        <div *ngSwitchCase="'TEXT'"><app-text [widget]="widget"></app-text></div>
 
 
       </div>

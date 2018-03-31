@@ -55,4 +55,17 @@ export class ProfileComponent implements OnInit {
             });
     this.router.navigate([], {relativeTo: this.route});
   }
+
+
+  delete() {
+    console.log('front start');
+    this.userService.deleteUser(this.user._id)
+      .subscribe(
+        (data: any) => {
+          console.log('front back')
+          this.router.navigate(['/login']);
+        }
+      );
+  }
 }
+

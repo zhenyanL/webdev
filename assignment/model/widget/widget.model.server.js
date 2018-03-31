@@ -58,22 +58,50 @@ function updateWidget(widgetId, widget) {
 function deleteWidget(widgetId) {
 
 
+  widgetModel.findById(widgetId).then(function(widget) {
+    console.log("delete");
+    console.log("delete"+widget.pageId);
+    pageModel.findPageById(widget.pageId).then(function(page){
+      page.widgets.pull({_id: widgetId});
+      page.save();
+    })
+  });
 
-  return widgetModel.findByIdAndRemove(widgetId)
-    .then(
-      function (widget) {
-        pageModel.findPageById(widget.pageId)
-          .then(
-            function (page) {
-              page.widgets.pull({_id: widgetId});
-              page.save();
-              // return widget;
-              return widget;
-            }
-          );
-        return widget;
+  widgetModel.findById(widgetId).then(function(widget) {
+    var index = widget.position;
+    updatePosition(widget.pageId, index);
+  });
+  return widgetModel.remove({_id: widgetId});
+
+  //
+  //
+  // return widgetModel.findByIdAndRemove(widgetId)
+  //   .then(
+  //     function (widget) {
+  //       pageModel.findPageById(widget.pageId)
+  //         .then(
+  //           function (page) {
+  //             page.widgets.pull({_id: widgetId});
+  //             page.save();
+  //             // return widget;
+  //             return widget;
+  //           }
+  //         );
+  //       return widget;
+  //     }
+  //   );
+}
+
+function updatePosition (pageId, position) {
+  console.log("update method");
+  return widgetModel.find({pageId:pageId}, function (err, widgets) {
+    widgets.forEach (function (widget) {
+      if(widget.position > position){
+        widget.position--;
+        widget.save();
       }
-    );
+    })
+  })
 }
 
 function reorderWidget(pageId,start,end) {

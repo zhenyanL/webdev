@@ -160,16 +160,28 @@ module.exports = function (app) {
 
 
   function deleteUser(req,res,next){
-    var id = req.params["userId"];
+    // var id = req.params["userId"];
+    var id = req.params.userId;
     // const index = this.users.findIndex(user => user.id === userId);
-    var index = users.findIndex(function (user) {
-      return user.id === id;
-    });
-    if(index === -1){
-      res.status(400).send("not found");
-    }
-    users.splice(index, 1);
-    res.status(200).send("ok");
+    // var index = users.findIndex(function (user) {
+    //   return user.id === id;
+    // });
+    // if(index === -1){
+    //   res.status(400).send("not found");
+    // }
+    // users.splice(index, 1);
+    // res.status(200).send("ok");
+    console.log("back server start" + id);
+    userModel.deleteUser(id)
+      .then(
+        function (user) {
+          console.log("back server back");
+          res.json(user);
+        },
+        function (err) {
+          res.status(400).send(err);
+        }
+      )
   }
 
 }

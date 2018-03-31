@@ -59,8 +59,14 @@ export class UserService {
     });
   }
 
-  deleteUser(userId: string) {
+  deleteUser(userId) {
     // const index = this.users.findIndex(user => user.id === userId);
     // this.users.splice(index, 1);
+    console.log('front server get')
+    const url = environment.baseUrl + '/api/user/' + userId;
+    return this.http.delete(url).map((response: Response) => {
+      console.log('front server back');
+      return response.json();
+    });
   }
 }
