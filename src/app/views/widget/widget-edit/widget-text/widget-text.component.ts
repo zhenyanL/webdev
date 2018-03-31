@@ -25,12 +25,12 @@ export class WidgetTextComponent implements OnInit {
   }
   save() {
     const text = this.widgetForm.value.text;
-    const size = this.widgetForm.value.widgetSize;
+    const rows = this.widgetForm.value.rows;
     const name = this.widgetForm.value.widgetName;
-    const width = this.widgetForm.value.widgetWidth;
+    const placeholder = this.widgetForm.value.placeholder;
     const isFormatted = this.widgetForm.value.widgetFormatted;
     this.widgetService.updateWidget(this.widget._id, {id: this.widget._id, name: name,
-      type: this.widget.type, pageId: this.widget.pageId, size: size, text: text, width: width, formatted: isFormatted}).subscribe(
+      type: this.widget.type, pageId: this.widget.pageId, rows: rows, text: text, placeholder: placeholder, formatted: isFormatted}).subscribe(
       (widget: any) => {
         alert( 'save successfully');
         this.router.navigate(['../'], {relativeTo: this.activatedRoute});
