@@ -156,10 +156,11 @@ module.exports = function (app) {
   }
 
   function register(req,res) {
+    console.log("back end");
     var user = req.body;
     user.password = bcrypt.hashSync(user.password);
     userModel
-      .findUserByUsername(user.userName)
+      .findUserByUserName(user.userName)
       .then(function (data) {
         if(data){
           res.status(400).send('Username is in use!');

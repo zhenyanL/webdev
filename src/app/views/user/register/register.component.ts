@@ -40,7 +40,8 @@ export class RegisterComponent implements OnInit {
       this.userService.register(userName, password, firstName, lastName)
         .subscribe(
           (data: any) => {
-            this.router.navigate(['/user', data._id]);
+            // this.router.navigate(['/user', data._id]);
+            this.router.navigate(['/profile']);
           }
         );
 
