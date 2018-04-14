@@ -71,6 +71,7 @@ module.exports = function (app) {
                 token: token
               }
             }
+            console.log("get token back");
             return userModel.createUser(newFacebookUser);
           }
         },

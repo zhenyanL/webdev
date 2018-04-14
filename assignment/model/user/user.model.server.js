@@ -40,11 +40,13 @@ function deleteUser(userId){
 }
 
 function findUserByFacebookId(facebookId) {
+  console.log("find by facebook id");
   return userModel.findOne({'facebook.id' : facebookId});
 }
 
+function findByTry() {
 
-
+}
 
 
 
