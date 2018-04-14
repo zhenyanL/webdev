@@ -66,7 +66,7 @@ module.exports = function (app) {
               lastName: names[1],
               firstName: names[0],
               email: profile.emails ? profile.emails[0].value:"",
-              fackbook: {
+              facebook: {
                 id: profile.id,
                 token: token
               }
