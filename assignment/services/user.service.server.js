@@ -53,7 +53,7 @@ module.exports = function (app) {
   passport.deserializeUser(deserializeUser);
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
-  function facebookStrategy(token, regreshToken, profile, done) {
+  function facebookStrategy(token, refreshToken, profile, done) {
     userModel.findUserByFacebookId(profile.id)
       .then(
         function (user) {
