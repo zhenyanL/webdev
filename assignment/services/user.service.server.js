@@ -24,8 +24,8 @@ module.exports = function (app) {
     clientID     : process.env.FACEBOOK_CLIENT_ID,
     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    // clientID     : "196294931178954",
-    // clientSecret : "c968132dc3db102c50bf43aaeff92d18",
+    // clientID     : "1999606587021313",
+    // clientSecret : "9c5d3de860acef46c2ab49f0d0dc5e18",
     // callbackURL  : "http://localhost:4200"
   };
 
@@ -62,7 +62,7 @@ module.exports = function (app) {
           }else{
             var names = profile.displayName.split(" ");
             var newFacebookUser = {
-              userName: 'username',
+             // userName: 'username',
               lastName: names[1],
               firstName: names[0],
               email: profile.emails ? profile.emails[0].value:"",
@@ -70,7 +70,7 @@ module.exports = function (app) {
                 id: profile.id,
                 token: token
               }
-            }
+            };
             console.log("get token back");
             return userModel.createUser(newFacebookUser);
           }
