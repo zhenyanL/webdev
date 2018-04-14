@@ -21,6 +21,10 @@ export class PageEditComponent implements OnInit {
   pageId: string;
   page: any;
   userId: string;
+  errFlag = false;
+ error = 'Enter the name of the Page';
+ alert = '* Enter the Page name';
+
   constructor(private activatedRoute: ActivatedRoute, private pageService: PageService, private websiteService: WebsiteService, private router: Router) { }
 
   ngOnInit() {
@@ -39,15 +43,19 @@ export class PageEditComponent implements OnInit {
 
   editPage() {
       const name = this.editPageForm.value.pageName;
-      const title = this.editPageForm.value.pageTitle;
-      this.page.name = name;
-      this.page.title = title;
-      this.pageService.updatePage(this.pageId, this.page).subscribe(
-        (page: any) => {
-          alert( 'save successfully');
-          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-        }
-      );
+      if(name === ''){
+        this.errFlag = true;
+      } else{
+        const title = this.editPageForm.value.pageTitle;
+        this.page.name = name;
+        this.page.title = title;
+        this.pageService.updatePage(this.pageId, this.page).subscribe(
+          (page: any) => {
+            alert( 'save successfully');
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+          }
+        );
+      }
   }
 
   deletePage() {

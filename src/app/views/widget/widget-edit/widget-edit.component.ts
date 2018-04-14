@@ -10,6 +10,7 @@ import {WidgetService} from '../../../service/widget.service';
 })
 export class WidgetEditComponent implements OnInit {
 
+
   widgetId: string;
   widget: any;
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }

@@ -12,6 +12,9 @@ import {NgForm} from '@angular/forms';
 export class WebsiteEditComponent implements OnInit {
   id: string;
   website;
+  error = 'Enter the name of the website';
+  alert = 'Enter the website name';
+  flag = false;
   @ViewChild('webEditForm') webEditForm: NgForm;
   constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -30,14 +33,19 @@ export class WebsiteEditComponent implements OnInit {
 
   editWeb() {
       const name = this.webEditForm.value.webName;
-      const description = this.webEditForm.value.description;
-      this.websiteService.updateWebsite(this.id,
-        {id: this.id, name: name, pages: this.website.pages, userId: this.website.userId, description: description}).subscribe(
-        (website: Website) => {
-          alert( 'save successfully');
-          this.router.navigate(['/user', this.website.userId, 'website']);
-        }
-      );
+      if (name === '') {
+        this.flag = true;
+      }
+      else{
+        const description = this.webEditForm.value.description;
+        this.websiteService.updateWebsite(this.id,
+          {id: this.id, name: name, pages: this.website.pages, userId: this.website.userId, description: description}).subscribe(
+          (website: Website) => {
+            alert( 'save successfully');
+            this.router.navigate(['/user', this.website.userId, 'website']);
+          }
+        );
+      }
   }
 
   deleteWeb() {

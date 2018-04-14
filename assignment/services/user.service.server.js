@@ -3,6 +3,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function (app) {
 
@@ -100,7 +101,7 @@ module.exports = function (app) {
       .then(
         function(user){
           if(user){
-            if(user.userName === userName && user.password === password){
+            if(user && bcrypt.compareSync(password, user.password)){
               return done(null,user);
             }
             else{
@@ -156,21 +157,46 @@ module.exports = function (app) {
 
   function register(req,res) {
     var user = req.body;
-    userModel.createUser(user)
-      .then(
-        function (user) {
-          if(user){
-            req.login(user,function (err) {
-              if(err){
-                res.status(400).send(err);
+    user.password = bcrypt.hashSync(user.password);
+    userModel
+      .findUserByUsername(user.userName)
+      .then(function (data) {
+        if(data){
+          res.status(400).send('Username is in use!');
+          return;
+        } else{
+          userModel
+            .createUser(user)
+            .then(
+              function(user){
+                if(user){
+                  req.login(user, function(err) {
+                    if(err) {
+                      res.status(400).send(err);
+                    } else {
+                      res.json(user);
+                    }
+                  });
+                }
               }
-              else{
-                res.json(user);
-              }
-            })
-          }
+            );
         }
-      )
+      });
+    // userModel.createUser(user)
+    //   .then(
+    //     function (user) {
+    //       if(user){
+    //         req.login(user,function (err) {
+    //           if(err){
+    //             res.status(400).send(err);
+    //           }
+    //           else{
+    //             res.json(user);
+    //           }
+    //         })
+    //       }
+    //     }
+    //   )
   }
 
   function loggedin(req,res) {

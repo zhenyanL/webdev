@@ -19,6 +19,10 @@ export class PageNewComponent implements OnInit {
 
   webId: string;
   userId: string
+  errFlag = false;
+  error = 'Enter the name of the Page';
+  alert = '* Enter the Page name';
+
   constructor(private activatedRoute: ActivatedRoute,private pageService: PageService, private router: Router) { }
 
   ngOnInit() {
@@ -32,11 +36,16 @@ export class PageNewComponent implements OnInit {
 
   createPage() {
     const name = this.newPageForm.value.pageName;
-    const title = this.newPageForm.value.pageTitle;
-    this.pageService.createPage(this.webId, name, title).subscribe(
-      (page: any) => {
-        this.router.navigate(['user', this.userId, 'website', this.webId, 'page']);
-      }
-    );
+    if(name === ''){
+      this.errFlag = true;
+    } else {
+      const title = this.newPageForm.value.pageTitle;
+      this.pageService.createPage(this.webId, name, title).subscribe(
+        (page: any) => {
+          this.router.navigate(['user', this.userId, 'website', this.webId, 'page']);
+        }
+      );
+    }
+
   }
 }

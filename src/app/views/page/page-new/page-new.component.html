@@ -34,9 +34,14 @@
 
       <div class="container-fluid">
         <form (ngSubmit)="createPage()" #newPageForm="ngForm">
+          <div *ngIf="errFlag" class="alert alert-danger">
+            {{error}}
+          </div>
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" ngModel name="pageName" class="form-control" id="name" placeholder="page name">
+            <span class="alert-class"
+                  *ngIf="errFlag">{{alert}}</span>
           </div>
           <div class="form-group">
             <label for="title">Title</label>

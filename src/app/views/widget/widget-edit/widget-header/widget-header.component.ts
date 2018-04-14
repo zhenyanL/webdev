@@ -13,6 +13,9 @@ export class WidgetHeaderComponent implements OnInit {
   @Input() widget: any;
   @ViewChild('widgetForm') widgetForm: NgForm;
   userId: string;
+  flag = false;
+  error = 'Enter the name of the widget';
+  alert = '* Enter the widget name';
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
@@ -27,15 +30,19 @@ export class WidgetHeaderComponent implements OnInit {
     const text = this.widgetForm.value.widgetText;
     const size = this.widgetForm.value.widgetSize;
     const name = this.widgetForm.value.widgetName;
-    console.log('id before send to back end' + this.widget._id);
-    this.widgetService.updateWidget(this.widget._id, { id:  this.widget._id, name: name, type: this.widget.type,
-      pageId: this.widget.pageId, size: size, text: text} ).subscribe(
-      (widget: any) => {
-        alert( 'save successfully');
-        console.log('id after send to back end' + widget._id);
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-      }
-    );
+    if(name === '') {
+      this.flag = true;
+    } else{
+      console.log('id before send to back end' + this.widget._id);
+      this.widgetService.updateWidget(this.widget._id, { id:  this.widget._id, name: name, type: this.widget.type,
+        pageId: this.widget.pageId, size: size, text: text} ).subscribe(
+        (widget: any) => {
+          alert( 'save successfully');
+          console.log('id after send to back end' + widget._id);
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
+    }
   }
 
   deleteWidget() {

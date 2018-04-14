@@ -11,6 +11,10 @@ import {Website} from '../../../model/website.model';
 })
 export class WebsiteNewComponent implements OnInit {
 
+  flag = false;
+  error = 'Enter the name of the website';
+  alert = '* Enter the website name';
+
   @ViewChild('newWebForm') newWebForm: NgForm;
   constructor(private activatedRoute: ActivatedRoute, private webService: WebsiteService, private router: Router) { }
 
@@ -25,13 +29,18 @@ export class WebsiteNewComponent implements OnInit {
 
   createWeb() {
     const name = this.newWebForm.value.webName;
-    const description = this.newWebForm.value.description;
-    const website = new Website('', name, this.developerId, description);
-    this.webService.createWebsite({userId: this.developerId, name: name,  description: description}).subscribe(
-      (data: any) => {
-        this.router.navigate(['user', this.developerId, 'website']);
-      }
-    );
+    if (name === ''){
+      this.flag = true;
+    }
+    else{
+      const description = this.newWebForm.value.description;
+      const website = new Website('', name, this.developerId, description);
+      this.webService.createWebsite({userId: this.developerId, name: name,  description: description}).subscribe(
+        (data: any) => {
+          this.router.navigate(['user', this.developerId, 'website']);
+        }
+      );
+    }
   }
 
 }

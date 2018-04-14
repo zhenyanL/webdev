@@ -18,6 +18,9 @@ export class WidgetImageComponent implements OnInit {
   websiteId: string;
   baseUrl: string = environment.baseUrl;
   widgetId;
+  flag = false;
+  error = 'Enter the name of the widget';
+  alert = '* Enter the widget name';
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
@@ -39,13 +42,17 @@ export class WidgetImageComponent implements OnInit {
     const width = this.widgetForm.value.width;
     const url = this.widgetForm.value.url;
     // console.log('save here');
-    this.widgetService.updateWidget(this.widget._id,{id: this.widget._id,
-    name: name, type: this.widget.type, pageId: this.widget.pageId, width: width, text: text, url: url}).subscribe(
-      (widget: any) => {
-        alert( 'save successfully');
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-      }
-    );
+    if(name === ''){
+      this.flag = true;
+    } else{
+      this.widgetService.updateWidget(this.widget._id,{id: this.widget._id,
+        name: name, type: this.widget.type, pageId: this.widget.pageId, width: width, text: text, url: url}).subscribe(
+        (widget: any) => {
+          alert( 'save successfully');
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+        }
+      );
+    }
   }
 
   deleteWidget() {
