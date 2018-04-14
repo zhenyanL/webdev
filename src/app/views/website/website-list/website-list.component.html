@@ -4,9 +4,12 @@
   <div class="container-fluid ">
 
 
-    <a routerLink="../" class="navbar-text pull-left"><span class="glyphicon glyphicon-menu-left css-text-white "></span></a>
+    <a [routerLink]="['/profile']" class="navbar-text pull-left"><span class="glyphicon glyphicon-menu-left css-text-white "></span></a>
 
     <a class="navbar-brand css-text-white " routerLink="./">Websites</a>
+    <!--<a class="navbar-brand css-text-white " [routerLink]="['/profile']">Websites</a>-->
+    <!--[routerLink]="['/profile']"-->
+
 
     <a routerLink="new" class="pull-right navbar-text" ><span class="glyphicon glyphicon-plus css-text-white"></span></a>
 
@@ -32,7 +35,7 @@
 <nav class="navbar bg-primary navbar-fixed-bottom">
   <div class="container-fluid ">
 
-    <a [routerLink]="['/user',id]" class="navbar-text pull-right" ><span class="glyphicon glyphicon-user css-text-white"></span></a>
+    <a [routerLink]="['/profile']" class="navbar-text pull-right" ><span class="glyphicon glyphicon-user css-text-white"></span></a>
 
   </div>
 </nav>

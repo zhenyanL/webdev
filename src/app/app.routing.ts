@@ -21,18 +21,19 @@ const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuardService]},
-  {path: 'user/:uid/website', component: WebsiteListComponent},
-  {path: 'user/:uid/website/new', component: WebsiteNewComponent},
-  {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
-  {path: 'user/:uid/website/:wid/page', component: PageListComponent},
-  {path: 'user/:uid/website/:wid/page/new', component: PageNewComponent},
-  {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChoooserComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/new/:part', component: WidgetNewComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid', component: WidgetEditComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid/flickr', component: FlickrImageSearchComponent}
+  // {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuardService]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website', component: WebsiteListComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/new', component: WebsiteNewComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid', component: WebsiteEditComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page', component: PageListComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page/new', component: PageNewComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChoooserComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/new/:part', component: WidgetNewComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid', component: WidgetEditComponent, canActivate: [AuthGuardService]},
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuardService]}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
