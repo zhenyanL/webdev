@@ -35,7 +35,13 @@ export class ProfileComponent implements OnInit {
     );
   }
   logout() {
-
+    this.userService.logOut()
+      .subscribe(
+        (data: any) => {
+          console.log('back to cilent');
+          this.router.navigate(['/login']);
+        }
+      );
   }
 
   toWebsite() {

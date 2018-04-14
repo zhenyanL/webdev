@@ -44,6 +44,8 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
 import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {FlickrService} from './service/flickr.service';
 import { OrderByPipePipe } from './views/widget/widget-list/order-by-pipe.pipe';
+import {SharedService} from './service/shared.service';
+import {AuthGuardService} from './service/auth-guard.service';
 
 
 
@@ -91,7 +93,7 @@ import { OrderByPipePipe } from './views/widget/widget-list/order-by-pipe.pipe';
     HttpModule,
     QuillEditorModule
   ],
-  providers: [UserService, PageService, WebsiteService, WidgetService, FlickrService],
+  providers: [UserService, PageService, WebsiteService, WidgetService, FlickrService, SharedService,AuthGuardService],
   bootstrap: [AppComponent]
   // decide where you start
 })

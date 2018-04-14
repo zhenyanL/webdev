@@ -6,18 +6,54 @@ const http = require('http');
 // var multer = require('multer');
 // var upload = multer({dest: "./uploads"});
 
+// var cookieParser = require('cookie-parser');
+// var session = require('express-session');
+// var passport = require('passport');
+
+
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
+
+
+
+
+
+app.use(cookieParser());
+app.use(session({
+  secret: 'this is the secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
 //CORS
-app.use(function(reg, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
+// app.use(function(reg, res, next){
+//   // res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, OPTIONS');
+//   next();
+// })
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
-})
+});
 
 const port=process.env.PORT || '3100';
 app.set('port', port);

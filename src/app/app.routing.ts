@@ -14,12 +14,14 @@ import {WidgetChoooserComponent} from './views/widget/widget-choooser/widget-cho
 import {WidgetEditComponent} from './views/widget/widget-edit/widget-edit.component';
 import {WidgetNewComponent} from './views/widget/widget-choooser/widget-new/widget-new.component';
 import {FlickrImageSearchComponent} from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {ModuleWithProviders} from '@angular/core';
+import {AuthGuardService} from './service/auth-guard.service'
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:uid', component: ProfileComponent},
+  {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuardService]},
   {path: 'user/:uid/website', component: WebsiteListComponent},
   {path: 'user/:uid/website/new', component: WebsiteNewComponent},
   {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
@@ -33,4 +35,4 @@ const appRoutes: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid/widget/:wdid/flickr', component: FlickrImageSearchComponent}
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

@@ -13,12 +13,14 @@ export class RegisterComponent implements OnInit {
   @ViewChild('registerForm') registerForm: NgForm;
   unMatched = false;
   errorMessg = 'password unmatched';
-  constructor(private userService: UserService, private router: Router) { }
+
+  constructor(private userService: UserService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
-  register( ) {
+  register() {
     const userName = this.registerForm.value.userName;
     const password = this.registerForm.value.password;
     const verify = this.registerForm.value.verifiedPassword;
@@ -29,12 +31,19 @@ export class RegisterComponent implements OnInit {
     } else {
       // const user = this.userService.createUser(userName, password, firstName, lastName);
       // this.router.navigate(['/user', user.id]);
-      this.userService.createUser(userName, password, firstName, lastName)
+      // / this.userService.createUser(userName, password, firstName, lastName)
+      //   .subscribe(
+      //     (data: any) => {
+      //       this.router.navigate(['/user', data._id]);
+      //     }
+      //   );
+      this.userService.register(userName, password, firstName, lastName)
         .subscribe(
           (data: any) => {
             this.router.navigate(['/user', data._id]);
           }
         );
+
     }
   }
 }
