@@ -10,6 +10,7 @@ userModel.findUserByUserName = findUserByUserName;
 userModel.findByCredential = findByCredential;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
+userModel.findUserByFacebookId = findUserByFacebookId;
 
 module.exports = userModel;
 
